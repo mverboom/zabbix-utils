@@ -1,0 +1,169 @@
+#!/bin/bash
+#
+# Zabbix latency and packetloss grapher
+#
+# 2016/06/22 MV: Initial version
+# 2016/06/23 MV: Added IPv6/IPv4 split
+# 2016/06/28 MV: Added removal of files from buffer for no longer monitored 
+#                hosts.
+# 2017/10/28 MV: Added support for hashes in config
+#
+# ToDo:
+# v check for required software
+# - verify runtime of fping with resolution timeouts etc
+# - external configuration for hosts
+
+BUFFER=/tmp/zabbix-fping
+SOFTWARE="fping gawk sed"
+CONFIG=/etc/zabbix/zabbix-fping.conf
+
+function get_value() {
+   test -f $BUFFER/IPv$2/$1 && data=$( grep "^$3:" $BUFFER/IPv$2/$1 | cut -d ':' -f2 )
+   test -f $BUFFER/IPv$2/$1 -a "$data" != "" && echo $data
+}
+
+get_data() {
+   ! test -d $BUFFER && mkdir $BUFFER
+   ! test -d $BUFFER/IPv4 && mkdir $BUFFER/IPv4
+   ! test -d $BUFFER/IPv6 && mkdir $BUFFER/IPv6
+   HOSTS_4=$( cat $CONFIG | grep -v "^#" | sed -r -e '/^ipv4/!d' -e "s/^ipv4[ ]*=[ ]*(.*)/\1/" )
+   HOSTS_6=$( cat $CONFIG | grep -v "^#" | sed -r -e '/^ipv6/!d' -e "s/^ipv6[ ]*=[ ]*(.*)/\1/" )
+   cd $BUFFER/IPv4
+   run_fping fping "$HOSTS_4" &
+   cd $BUFFER/IPv6
+   run_fping fping6 "$HOSTS_6" &
+}
+
+run_fping() {
+   ($1 -q -c 50 -r 0 -B 1 $2 2>&1 | awk '
+      { host=$1;
+        loss = gensub(/.*\/(.*)%.*/, "\\1", "g" $0);
+        if (index($0,"min/avg/max") != 0) {
+           min = gensub(/.*\/max = ([0-9\.]*)\/.*/, "\\1", "g", $0);
+           avg = gensub(/.*\/max = [0-9\.].*\/([0-9\.]*)\/.*/, "\\1", "g", $0);
+           max = gensub(/.*\/([0-9\.]*)$/, "\\1", "g", $0);
+        } else {
+           min=0;
+           max=0;
+           avg=0;
+        }
+       printf("loss:%f\n", loss) > host;
+       printf("min:%f\n", min) > host;
+       printf("max:%f\n", max) > host;
+       printf("avg:%f\n", avg) > host;
+      }
+   ' > /dev/null  2>&1) &
+}
+
+function discover() {
+   cat $CONFIG | grep -v "^#" | awk '
+   BEGIN { printf("{\n\t\"data\":[\n"); first=1; ip=0;}
+   /^\[/ { name=gensub(/^\[(.*)\]$/, "\\1", "g", $0);}
+   tolower($1) ~ /^ipv4/ { host=gensub(/.*= *(.*)/, "\\1", "g", $0); ip=4; }
+   tolower($1) ~ /^ipv6/ { host=gensub(/.*= *(.*)/, "\\1", "g", $0); ip=6; }
+   { if (ip != 0) {
+        if (!first) { print ",";}
+        first=0;
+        printf("\t{\n");
+        printf("\t\t\"{#FPNAME}\":\"%s\",\n", host);
+        printf("\t\t\"{#FPDESC}\":\"%s\",\n", name);
+        printf("\t\t\"{#FPIP}\":\"%d\"\n", ip);
+        printf("\t}");
+        ip=0;
+     }
+   }
+   END { printf("\n\t]\n}\n");}
+   '
+
+   if test -d $BUFFER/IPv4
+   then
+      cd $BUFFER/IPv4
+      for name in *
+      do
+         re="\b$name\b"
+         grep -i "^ipv4.*$name" $CONFIG > /dev/null || rm $name
+      done
+   fi
+   if test -d $BUFFER/IPv6
+   then
+      cd $BUFFER/IPv6
+      for name in *
+      do
+         re="\b$name\b"
+         grep -i "^ipv6.*$name" $CONFIG > /dev/null || rm $name
+      done
+   fi
+}
+
+function list_old() {
+   first=1
+   echo -e "{\n\t\"data\":[\n"
+   for name in $HOSTS_4
+   do
+      test $first -ne 1 && echo ","
+      first=0
+      echo -e "\t{\n\t\t\"{#FPNAME}\":\"$name\",\n\t\t\"{#FPIP}\":\"4\""
+      echo -n -e "\t}"
+   done
+   for name in $HOSTS_6
+   do
+      test $first -ne 1 && echo ","
+      first=0
+      echo -e "\t{\n\t\t\"{#FPNAME}\":\"$name\",\n\t\t\"{#FPIP}\":\"6\""
+      echo -n -e "\t}"
+   done
+   echo -e "\n\t]\n}"
+
+   if test -d $BUFFER/IPv4
+   then
+      cd $BUFFER/IPv4
+      for name in *
+      do
+         re="\b$name\b"
+         [[ $HOSTS_4 =~ $re ]] || rm $name
+      done
+   fi
+
+   if test -d $BUFFER/IPv6
+   then
+      cd $BUFFER/IPv6
+      for name in *
+      do
+         re="\b$name\b"
+         [[ $HOSTS_6 =~ $re ]] || rm $name
+      done
+   fi
+}
+
+function sanity_check() {
+   ok=1
+   for prog in $SOFTWARE  
+   do
+      which $prog > /dev/null || { echo "Missing program $prog."; ok=0; }
+   done
+   test -f $CONFIG || { echo "Missing configfile $CONFIG"; ok=0; }
+   test $ok -ne 1 && { echo "Sanity check failed. Aboring." ; exit 1; }
+}
+
+sanity_check
+
+case "$1" in
+"getdata")
+   get_data
+;;
+"discover")
+   discover
+;;
+"loss")
+   get_value $2 $3 loss
+;;
+"avg")
+   get_value $2 $3 avg
+;;
+"min")
+   get_value $2 $3 min
+;;
+"max")
+   get_value $2 $3 max
+;;
+esac
