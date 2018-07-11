@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.4</version>
-    <date>2018-07-11T09:09:40Z</date>
+    <date>2018-07-11T11:03:46Z</date>
     <groups>
         <group>
             <name>Production</name>
@@ -249,9 +249,10 @@
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template Fping:fp.loss[{#FPNAME},{#FPIP}].avg(4m)}&gt;30 and {Template Fping:fp.loss[{#FPNAME},{#FPIP}].avg(4m)}&lt;100</expression>
+                            <expression>({Template Fping:fp.loss[{#FPNAME},{#FPIP}].avg(3m)}&gt;30 and {Template Fping:fp.loss[{#FPNAME},{#FPIP}].last()}&gt;30)&#13;
+and ( {Template Fping:fp.loss[{#FPNAME},{#FPIP}].avg(3m)}&lt;100 and {Template Fping:fp.loss[{#FPNAME},{#FPIP}].last()}&lt;100)</expression>
                             <recovery_mode>1</recovery_mode>
-                            <recovery_expression>{Template Fping:fp.loss[{#FPNAME},{#FPIP}].avg(5m)}=0</recovery_expression>
+                            <recovery_expression>{Template Fping:fp.loss[{#FPNAME},{#FPIP}].avg(4m)}=0</recovery_expression>
                             <name>High packet loss on {#FPDESC} (IPv{#FPIP})</name>
                             <correlation_mode>0</correlation_mode>
                             <correlation_tag/>
@@ -271,7 +272,7 @@
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template Fping:fp.loss[{#FPNAME},{#FPIP}].avg(10m)}&gt;10 and {Template Fping:fp.loss[{#FPNAME},{#FPIP}].avg(10m)}&lt;25</expression>
+                            <expression>({Template Fping:fp.loss[{#FPNAME},{#FPIP}].avg(4m)}&gt;10 and {Template Fping:fp.loss[{#FPNAME},{#FPIP}].last()}&gt;10) and ({Template Fping:fp.loss[{#FPNAME},{#FPIP}].avg(4m)}&lt;25 and {Template Fping:fp.loss[{#FPNAME},{#FPIP}].last()}&lt;25)</expression>
                             <recovery_mode>1</recovery_mode>
                             <recovery_expression>{Template Fping:fp.loss[{#FPNAME},{#FPIP}].avg(7m)}&lt;5</recovery_expression>
                             <name>Packet loss on {#FPDESC} (IPv{#FPIP})</name>
@@ -291,8 +292,9 @@
                                 </dependency>
                                 <dependency>
                                     <name>High packet loss on {#FPDESC} (IPv{#FPIP})</name>
-                                    <expression>{Template Fping:fp.loss[{#FPNAME},{#FPIP}].avg(4m)}&gt;30 and {Template Fping:fp.loss[{#FPNAME},{#FPIP}].avg(4m)}&lt;100</expression>
-                                    <recovery_expression>{Template Fping:fp.loss[{#FPNAME},{#FPIP}].avg(5m)}=0</recovery_expression>
+                                    <expression>({Template Fping:fp.loss[{#FPNAME},{#FPIP}].avg(3m)}&gt;30 and {Template Fping:fp.loss[{#FPNAME},{#FPIP}].last()}&gt;30)&#13;
+and ( {Template Fping:fp.loss[{#FPNAME},{#FPIP}].avg(3m)}&lt;100 and {Template Fping:fp.loss[{#FPNAME},{#FPIP}].last()}&lt;100)</expression>
+                                    <recovery_expression>{Template Fping:fp.loss[{#FPNAME},{#FPIP}].avg(4m)}=0</recovery_expression>
                                 </dependency>
                             </dependencies>
                             <tags/>
