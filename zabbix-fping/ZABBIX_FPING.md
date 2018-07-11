@@ -17,7 +17,7 @@ need to be done.
 
 ## AGENT CONFIGURATION
 
-### COMMAND INSTALLATION
+### ZABBIX_FPING INSTALLATION
 
 The command needs to be installed on one or more zabbix agents. The default location
 referenced in all files in this repository is:
@@ -30,7 +30,7 @@ In order for this command to work, the following software needs to be available:
 * gawk
 * sed
 
-### COMMAND CONFIGURATION
+### ZABBIX_FPING CONFIGURATION
 
 The command needs a configuration file. An example configuration file is included
 in this repository. The configuration file needs to be installed in the following
@@ -53,7 +53,7 @@ Below the header two key/value pairs are available:
 At least one of these needs to be configured. The value should either be a DNS
 name used for the specific IP version or an IP adres.
 
-### RUNNING COMMAND
+### RUNNING
 
 It is best to run the command from cron. The user running the command needs enough
 privileges to run fping and read the configuration file.
@@ -78,7 +78,11 @@ repository and should in installed at:
 
 `/etc/zabbix/zabbix_agentd.d/zabbix_agent-fping.conf`
 
-### ZABBIX TEMPLATE
+After the configuration has been added, reload the agent
+
+`systemctl restart zabbix-agent`
+
+## SERVER CONFIGURATION
 
 The final step should be taken server side. In order to monitor the data a new
 template needs to be imported.
