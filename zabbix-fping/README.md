@@ -25,6 +25,10 @@ severity they are:
 The triggers have been set up to minimize the amount of notifications during
 escalation and deescalation of packetloss to a target.
 
+The idea is that when the recovery for a trigger is met, the lower triggers will
+not trigger. The downside of this setup is that a high severity alert will remain
+triggered even if the initial triggering value is no longer met.
+
 For more information see:
 
 [zabbix_fping](ZABBIX_FPING.md)
