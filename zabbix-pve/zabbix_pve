@@ -1,0 +1,155 @@
+#!/bin/bash
+#
+# Zabbix agent extension for monitoring Proxmox Virtual Environment
+#
+
+BUFFER=/tmp/zabbix-pve
+CFG=/etc/zabbix/zabbix-pve.conf
+COOKIE=/tmp/zabbix-pve.cookie
+
+function get_value() {
+   data=$( grep "^$2:" $BUFFER/$1)
+   data=${data/*:/}
+   echo ${data:-0}
+}
+
+function discover_ve() {
+   ! compgen -G "$BUFFER/vm_*" > /dev/null && { echo -e "{\n\t\"data\":[]\n}\n"; exit 0; }
+   first=1
+   echo -e "{\n\t\"data\":["
+   for file in $BUFFER/vm_*
+   do
+      test $first -ne 1 && echo ","
+      first=0
+      name=$(grep "^name:" $file )
+      pool=$(grep "^pool:" $file )
+      type=$(grep "^type:" $file )
+      id=$(grep "^id:" $file )
+      cpus=$(grep "^cpus:" $file )
+      status=$(grep "^status:" $file )
+      echo -e "\t{\n\t\t\"{#PVEID}\":\"${id/*:/}\",\n\t\t\"{#PVENAME}\":\"${name/*:/}\",\n\t\t\"{#PVESTATUS}\":\"${status/*:/}\",\n\t\t\"{#PVECPUS}\":\"${cpus/*:/}\",\n\t\t\"{#PVETYPE}\":\"${type/*:/}\",\n\t\t\"{#PVEPOOL}\":\"${pool/*:/}\""
+      echo -n -e "\t}"
+   done
+   echo -e "\n\t]\n}"
+}
+
+function getdata() {
+   test -f $CFG || { echo "Error: Credential configuration file not found."; exit 1; }
+   . $CFG
+   mkdir $BUFFER.$$; chown root:zabbix $BUFFER.$$; chmod 750 $BUFFER.$$
+   cd $BUFFER.$$
+   curl -s -k -d "username=$USERNAME&password=$PASSWORD"  https://$HOSTNAME:8006/api2/json/access/ticket | jq --raw-output '.data.ticket' | sed 's/^/PVEAuthCookie=/' > $COOKIE
+   for pool in $( curl -s --insecure --cookie "$(<$COOKIE)" https://$HOSTNAME:8006/api2/json/pools | jq '.' | sed -r '/"poolid"/!d;s/.*: "(.*)".*/\1/' )
+   do
+   ( curl  -s --insecure --cookie "$(<$COOKIE)" https://$HOSTNAME:8006/api2/json/pools/$pool ) | jq '.' | awk -v pool=$pool '
+      /^      }/ { found=0;
+                fn=sprintf("vm_%s",id);
+                printf("name:%s\n", name) > fn;
+                printf("pool:%s\n", pool) > fn;
+                printf("type:%s\n", type) > fn;
+                printf("id:%s\n", id) > fn;
+                printf("mem-used:%s\n", memused) > fn;
+                printf("mem-total:%s\n", memtotal) > fn;
+                printf("swap-used:%s\n", swapused) > fn;
+                printf("swap-total:%s\n", swaptotal) > fn;
+                printf("cpu:%s\n", cpu) > fn;
+                printf("io-read:%s\n", ioread) > fn;
+                printf("io-write:%s\n", iowrite) > fn;
+                printf("disk-used:%s\n", diskused) > fn;
+                printf("disk-total:%s\n", disktotal) > fn;
+                printf("net-in:%s\n", netin) > fn;
+                printf("net-out:%s\n", netout) > fn;
+                printf("uptime:%s\n", uptime) > fn;
+                printf("cpus:%s\n", cpus) > fn;
+                printf("status:%s\n", status) > fn;
+                swapused=0;
+                swaptotal=0;
+              }
+      /"name"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);name=$2;}
+      /"type"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);type=$2;}
+      /"vmid"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);id=$2;}
+      /"mem"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);memused=$2;}
+      /"maxmem"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);memtotal=$2;}
+      /"swap"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);swapused=$2;}
+      /"maxswap"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);swaptotal=$2;}
+      /"cpu"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);cpu=$2;}
+      /"diskread"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);ioread=$2;}
+      /"diskwrite"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);iowrite=$2;}
+      /"disk"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);diskused=$2;}
+      /"maxdisk"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);disktotal=$2;}
+      /"netin"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);netin=$2;}
+      /"netout"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);netout=$2;}
+      /"uptime"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);uptime=$2;}
+      /"maxcpu"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);cpus=$2;}
+      /"status"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);status=$2;}
+      /^      {/ { found=1; }
+'
+   done
+   curl  -s --insecure --cookie "$(<$COOKIE)" https://$HOSTNAME:8006/api2/json/nodes/$HOSTNAME/version | jq '.' | awk '
+      /"version"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);printf("version:%s\n", $2) > "pve_version";}
+      /"release"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);printf("release:%s\n",  $2) > "pve_version";}
+      /"repoid"/ { sub(/,$/, "", $2); gsub(/"/, "", $2); printf("repoid:%s\n",  $2) > "pve_version";}'
+   rm -f $COOKIE
+   test -d $BUFFER && mv $BUFFER $BUFFER.old
+   mv $BUFFER.$$ $BUFFER
+   rm -rf $BUFFER.old
+}
+
+case "$1" in
+"getdata")
+   getdata
+"version.version")
+   get_value pve_version version
+;;
+"version.release")
+   get_value pve_version release
+;;
+"version.repoid")
+   get_value pve_version repoid
+;;
+"vm.discover")
+   discover_ve
+;;
+"vm.mem-used")
+   get_value vm_$2 mem-used
+;;
+"vm.mem-total")
+   get_value vm_$2 mem-total
+;;
+"vm.swap-used")
+   get_value vm_$2 swap-used
+;;
+"vm.swap-total")
+   get_value vm_$2 swap-total
+;;
+"vm.cpu")
+   get_value vm_$2 cpu
+;;
+"vm.io-read")
+   get_value vm_$2 io-read
+;;
+"vm.io-write")
+   get_value vm_$2 io-write
+;;
+"vm.disk-total")
+   get_value vm_$2 disk-total
+;;
+"vm.disk-used")
+   get_value vm_$2 disk-used
+;;
+"vm.net-in")
+   get_value vm_$2 net-in
+;;
+"vm.net-out")
+   get_value vm_$2 net-out
+;;
+"vm.uptime")
+   get_value vm_$2 uptime
+;;
+"vm.status")
+   get_value vm_$2 status
+;;
+"vm.pool")
+   get_value vm_$2 pool
+;;
+esac
