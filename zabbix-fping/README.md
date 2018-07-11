@@ -1,3 +1,5 @@
+# Zabbix Fping
+
 This template uses fping to ping systems from the zabbix agent. The idea is to use
 the zabbix agent as a "point of view" from which to ping the targets. By using
 different zabbix agents remote from the target, a more global view can be made
@@ -25,4 +27,4 @@ escalation and deescalation of packetloss to a target.
 
 For more information see:
 
-[a relative link](ZABBIX_FPING.md)
+[zabbix_fping](ZABBIX_FPING.md)
