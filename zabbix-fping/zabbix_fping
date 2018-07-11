@@ -2,16 +2,6 @@
 #
 # Zabbix latency and packetloss grapher
 #
-# 2016/06/22 MV: Initial version
-# 2016/06/23 MV: Added IPv6/IPv4 split
-# 2016/06/28 MV: Added removal of files from buffer for no longer monitored 
-#                hosts.
-# 2017/10/28 MV: Added support for hashes in config
-#
-# ToDo:
-# v check for required software
-# - verify runtime of fping with resolution timeouts etc
-# - external configuration for hosts
 
 BUFFER=/tmp/zabbix-fping
 SOFTWARE="fping gawk sed"
@@ -91,46 +81,6 @@ function discover() {
       do
          re="\b$name\b"
          grep -i "^ipv6.*$name" $CONFIG > /dev/null || rm $name
-      done
-   fi
-}
-
-function list_old() {
-   first=1
-   echo -e "{\n\t\"data\":[\n"
-   for name in $HOSTS_4
-   do
-      test $first -ne 1 && echo ","
-      first=0
-      echo -e "\t{\n\t\t\"{#FPNAME}\":\"$name\",\n\t\t\"{#FPIP}\":\"4\""
-      echo -n -e "\t}"
-   done
-   for name in $HOSTS_6
-   do
-      test $first -ne 1 && echo ","
-      first=0
-      echo -e "\t{\n\t\t\"{#FPNAME}\":\"$name\",\n\t\t\"{#FPIP}\":\"6\""
-      echo -n -e "\t}"
-   done
-   echo -e "\n\t]\n}"
-
-   if test -d $BUFFER/IPv4
-   then
-      cd $BUFFER/IPv4
-      for name in *
-      do
-         re="\b$name\b"
-         [[ $HOSTS_4 =~ $re ]] || rm $name
-      done
-   fi
-
-   if test -d $BUFFER/IPv6
-   then
-      cd $BUFFER/IPv6
-      for name in *
-      do
-         re="\b$name\b"
-         [[ $HOSTS_6 =~ $re ]] || rm $name
       done
    fi
 }
