@@ -12,6 +12,8 @@ The template collects:
 Using this information a graph is create using minimum, maximum and average latency
 to the target. If any packetloss is present this is also shown in the graph.
 
+![Zabbix graph](graph.png)
+
 Based on the packetloss the template provides three triggers, in order of
 severity they are:
 * Packet loss
@@ -21,20 +23,6 @@ severity they are:
 The triggers have been set up to minimize the amount of notifications during
 escalation and deescalation of packetloss to a target.
 
+For more information see:
 
-
-
-
-crontab entry
-
-* * * * * /usr/local/bin/zabbix_fping.sh getdata
-
-/etc/zabbix/zabbix_agentd.d/zabbix_agent-fping.conf
-
-temp data
-
-/tmp/zabbix-fping
-
-config
-
-/etc/zabbix/zabbix-fping.conf
+[a relative link](ZABBIX_FPING.md)
