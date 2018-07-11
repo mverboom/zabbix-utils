@@ -83,6 +83,26 @@ repository and should in installed at:
 The final step should be taken server side. In order to monitor the data a new
 template needs to be imported.
 
+* Open the zabbix webinterface
+* Go to Configuration -> Templates
+* Choose Import
+* Choose browse and select the `template-fping.xml` file in the file browser.
+* Make any require changes to rules
+* Select Import
+
+The template is now available. In order to configure it for a host with a zabbix
+agent that has been configuratie with the command follow the steps below.
+
+* Open the zabbix webinterface
+* Go to Configuration -> Hosts
+* Select the name of the host to configure
+* Go to templates
+* Choose Template Fping at the Link new templates box
+* Choose Add
+* Choose Update
+
+Zabbix should now start collecting data.
+
 # FILES
 
 `/usr/local/bin/zabbix_fping` Command
