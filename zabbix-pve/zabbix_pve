@@ -81,7 +81,7 @@ function getdata() {
       /"uptime"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);uptime=$2;}
       /"cpus"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);cpus=$2;}
       /"status"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);status=$2;}
-      /"lock"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);lock=$2;}
+      /"lock"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);if ($2=="") lock=0; else lock=1;}
       /^{/ { found=1; }
 '
    for pool in $(curl  -s --insecure --cookie "$(<$COOKIE)" https://$HOSTNAME:8006/api2/json/pools/ | jq -r '.[][].poolid')
