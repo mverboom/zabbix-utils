@@ -10,7 +10,7 @@ COOKIE=/tmp/zabbix-pve.cookie
 function get_value() {
    data=$( grep "^$2:" $BUFFER/$1)
    data=${data/*:/}
-   echo ${data:-0}
+   echo ${data:-}
 }
 
 function discover_ve() {
@@ -60,6 +60,7 @@ function getdata() {
                 printf("uptime:%s\n", uptime) > fn;
                 printf("cpus:%s\n", cpus) > fn;
                 printf("status:%s\n", status) > fn;
+                printf("lock:%s\n", lock) > fn;
                 swapused=0;
                 swaptotal=0;
               }
@@ -80,6 +81,7 @@ function getdata() {
       /"uptime"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);uptime=$2;}
       /"cpus"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);cpus=$2;}
       /"status"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);status=$2;}
+      /"lock"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);lock=$2;}
       /^{/ { found=1; }
 '
    for pool in $(curl  -s --insecure --cookie "$(<$COOKIE)" https://$HOSTNAME:8006/api2/json/pools/ | jq -r '.[][].poolid')
@@ -97,62 +99,20 @@ function getdata() {
    rm -rf $BUFFER.old
 }
 
-case "$1" in
-"getdata")
+action=$1
+vm=$2
+
+case "$action" in
+getdata)
    getdata
 ;;
-"version.version")
-   get_value pve_version version
-;;
-"version.release")
-   get_value pve_version release
-;;
-"version.repoid")
-   get_value pve_version repoid
-;;
-"vm.discover")
+vm.discover)
    discover_ve
 ;;
-"vm.mem-used")
-   get_value vm_$2 mem-used
+version.*)
+   get_value pve_version ${action/*./}
 ;;
-"vm.mem-total")
-   get_value vm_$2 mem-total
-;;
-"vm.swap-used")
-   get_value vm_$2 swap-used
-;;
-"vm.swap-total")
-   get_value vm_$2 swap-total
-;;
-"vm.cpu")
-   get_value vm_$2 cpu
-;;
-"vm.io-read")
-   get_value vm_$2 io-read
-;;
-"vm.io-write")
-   get_value vm_$2 io-write
-;;
-"vm.disk-total")
-   get_value vm_$2 disk-total
-;;
-"vm.disk-used")
-   get_value vm_$2 disk-used
-;;
-"vm.net-in")
-   get_value vm_$2 net-in
-;;
-"vm.net-out")
-   get_value vm_$2 net-out
-;;
-"vm.uptime")
-   get_value vm_$2 uptime
-;;
-"vm.status")
-   get_value vm_$2 status
-;;
-"vm.pool")
-   get_value vm_$2 pool
+vm.*)
+   get_value vm_$vm ${action/*./}
 ;;
 esac
