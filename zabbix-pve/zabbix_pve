@@ -5,12 +5,28 @@
 
 BUFFER=/tmp/zabbix-pve
 CFG=/etc/zabbix/zabbix-pve.conf
+CFGCTPID=/etc/zabbix/zabbix-ctpid.conf
 COOKIE=/tmp/zabbix-pve.cookie
 
-function get_value() {
+function pve_get_value() {
    data=$( grep "^$2:" $BUFFER/$1)
    data=${data/*:/}
    echo ${data:-}
+}
+
+
+function discover_ctpid() {
+  jo -p data=$( jo -a $(
+  cat $CFGCTPID | sed "/^#/d;s/#.*//" | while read line
+  do
+     ctid=${line/,*/}
+     line=${line/$ctid,/}
+     name=${line/,*}
+     expr=${line/$name,/}
+     ctname=$(grep name: $BUFFER/vm_$ctid)
+     ctname=${ctname/*:/}
+     jo {#CTPID}=$ctid,$name {#CTPIDNAME}=$name {#CTPIDID}=\"$ctid\" {#CTPIDCTNAME}=$ctname
+  done ) )
 }
 
 function discover_ve() {
@@ -89,18 +105,29 @@ function getdata() {
       vms=$( curl  -s --insecure --cookie "$(<$COOKIE)" https://$HOSTNAME:8006/api2/json/pools/$pool | jq -r '.[].members[] | "vm_\(.vmid)"' )
       test "$vms" != "" && sed -i "s/pool:/pool:$pool/" $vms
    done
+
    curl  -s --insecure --cookie "$(<$COOKIE)" https://$HOSTNAME:8006/api2/json/nodes/$HOSTNAME/version | jq '.' | awk '
       /"version"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);printf("version:%s\n", $2) > "pve_version";}
       /"release"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);printf("release:%s\n",  $2) > "pve_version";}
       /"repoid"/ { sub(/,$/, "", $2); gsub(/"/, "", $2); printf("repoid:%s\n",  $2) > "pve_version";}'
    rm -f $COOKIE
+
+   ps -e -o lxc,pid,cmd | grep -v "^-" > ctpid.list
+
    test -d $BUFFER && mv $BUFFER $BUFFER.old
    mv $BUFFER.$$ $BUFFER
    rm -rf $BUFFER.old
 }
 
+function ctpid_get_pid() {
+   ctid=${1/,*/}
+   expr=$(grep "^$arg," $CFGCTPID | sed "s/#.*//;s/$arg,//" )
+   pid=$(grep "^$ctid" $BUFFER/ctpid.list | grep "$expr" | sed -r -e "s/[0-9]+ +([0-9]+).*/\1/")
+   echo ${pid:-0}
+}
+
 action=$1
-vm=$2
+arg=$2
 
 case "$action" in
 getdata)
@@ -110,9 +137,15 @@ vm.discover)
    discover_ve
 ;;
 version.*)
-   get_value pve_version ${action/*./}
+   pve_get_value pve_version ${action/*./}
 ;;
 vm.*)
-   get_value vm_$vm ${action/*./}
+   pve_get_value vm_$arg ${action/*./}
+;;
+ctpid.discover)
+   discover_ctpid
+;;
+ctpid.pid)
+   ctpid_get_pid $arg
 ;;
 esac
