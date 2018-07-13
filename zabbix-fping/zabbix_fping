@@ -4,7 +4,7 @@
 #
 # 2016/06/22 MV: Initial version
 # 2016/06/23 MV: Added IPv6/IPv4 split
-# 2016/06/28 MV: Added removal of files from buffer for no longer monitored 
+# 2016/06/28 MV: Added removal of files from buffer for no longer monitored
 #                hosts.
 # 2017/10/28 MV: Added support for hashes in config
 #
@@ -78,7 +78,7 @@ function discover() {
    if test -d $BUFFER/IPv4
    then
       cd $BUFFER/IPv4
-      for name in *
+      for name in $(ls)
       do
          re="\b$name\b"
          grep -i "^ipv4.*$name" $CONFIG > /dev/null || rm $name
@@ -87,7 +87,7 @@ function discover() {
    if test -d $BUFFER/IPv6
    then
       cd $BUFFER/IPv6
-      for name in *
+      for name in $(ls)
       do
          re="\b$name\b"
          grep -i "^ipv6.*$name" $CONFIG > /dev/null || rm $name
@@ -117,7 +117,7 @@ function list_old() {
    if test -d $BUFFER/IPv4
    then
       cd $BUFFER/IPv4
-      for name in *
+      for name in $(ls)
       do
          re="\b$name\b"
          [[ $HOSTS_4 =~ $re ]] || rm $name
@@ -127,7 +127,7 @@ function list_old() {
    if test -d $BUFFER/IPv6
    then
       cd $BUFFER/IPv6
-      for name in *
+      for name in $(ls)
       do
          re="\b$name\b"
          [[ $HOSTS_6 =~ $re ]] || rm $name
@@ -137,7 +137,7 @@ function list_old() {
 
 function sanity_check() {
    ok=1
-   for prog in $SOFTWARE  
+   for prog in $SOFTWARE
    do
       which $prog > /dev/null || { echo "Missing program $prog."; ok=0; }
    done
