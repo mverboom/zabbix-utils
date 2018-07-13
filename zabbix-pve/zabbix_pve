@@ -112,7 +112,7 @@ function getdata() {
       /"repoid"/ { sub(/,$/, "", $2); gsub(/"/, "", $2); printf("repoid:%s\n",  $2) > "pve_version";}'
    rm -f $COOKIE
 
-   ps -e -o lxc,etimes,pid,cmd | grep -v "^-" | sort -rn -k2,2 > ctpid.list
+   ps -e -h -o lxc,etimes,pid,cmd | grep -v "^-" | sort -rn -k2,2 > ctpid.list
 
    test -d $BUFFER && mv $BUFFER $BUFFER.old
    mv $BUFFER.$$ $BUFFER
