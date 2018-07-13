@@ -7,6 +7,8 @@ BUFFER=/tmp/zabbix-fping
 SOFTWARE="fping gawk sed"
 CONFIG=/etc/zabbix/zabbix-fping.conf
 
+shopt -s nullglob
+
 function get_value() {
    test -f $BUFFER/IPv$2/$1 && data=$( grep "^$3:" $BUFFER/IPv$2/$1 | cut -d ':' -f2 )
    test -f $BUFFER/IPv$2/$1 -a "$data" != "" && echo $data
@@ -87,7 +89,7 @@ function discover() {
 
 function sanity_check() {
    ok=1
-   for prog in $SOFTWARE  
+   for prog in $SOFTWARE
    do
       which $prog > /dev/null || { echo "Missing program $prog."; ok=0; }
    done
