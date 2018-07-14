@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.4</version>
-    <date>2018-07-11T11:03:46Z</date>
+    <date>2018-07-14T07:21:43Z</date>
     <groups>
         <group>
             <name>Production</name>
@@ -14,7 +14,8 @@
         <template>
             <template>Template Fping</template>
             <name>Template Fping</name>
-            <description>Fping template</description>
+            <description>Fping template&#13;
+Updated: 2018/07/14</description>
             <groups>
                 <group>
                     <name>Production</name>

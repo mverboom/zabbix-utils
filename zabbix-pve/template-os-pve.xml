@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.4</version>
-    <date>2018-07-11T12:48:47Z</date>
+    <date>2018-07-14T07:21:10Z</date>
     <groups>
         <group>
             <name>Production</name>
@@ -14,7 +14,8 @@
         <template>
             <template>Template OS PVE</template>
             <name>Template OS PVE</name>
-            <description>Template for monitoring a Proxmox Virtual Environment.</description>
+            <description>Template for monitoring a Proxmox Virtual Environment.&#13;
+Updated: 2018/07/14</description>
             <groups>
                 <group>
                     <name>Production</name>
@@ -25,7 +26,10 @@
             </groups>
             <applications>
                 <application>
-                    <name>Performance</name>
+                    <name>VM</name>
+                </application>
+                <application>
+                    <name>VM process</name>
                 </application>
             </applications>
             <items>
@@ -143,6 +147,119 @@
             </items>
             <discovery_rules>
                 <discovery_rule>
+                    <name>CT PID discovery</name>
+                    <type>0</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>pve.ctpid.discover</key>
+                    <delay>10m</delay>
+                    <status>0</status>
+                    <allowed_hosts/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <filter>
+                        <evaltype>0</evaltype>
+                        <formula/>
+                        <conditions/>
+                    </filter>
+                    <lifetime>5d</lifetime>
+                    <description>Container processes to monitor discovery</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>{#CTPIDNAME} pid ({#CTPIDCTNAME})</name>
+                            <type>0</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>pve.ctpid.pid[{#CTPID}]</key>
+                            <delay>1m</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>VM process</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{Template OS PVE:pve.ctpid.pid[{#CTPID}].change(0)}&lt;&gt;0</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>{#CTPIDNAME} has been restarted (on {#CTPIDCTNAME})</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>1</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template OS PVE:pve.ctpid.pid[{#CTPID}].last(1m)}=0</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>{#CTPIDNAME} is stopped (on {#CTPIDCTNAME})</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                    <graph_prototypes/>
+                    <host_prototypes/>
+                    <jmx_endpoint/>
+                </discovery_rule>
+                <discovery_rule>
                     <name>VM Discovery</name>
                     <type>0</type>
                     <snmp_community/>
@@ -206,7 +323,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>Performance</name>
+                                    <name>VM</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -253,7 +370,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>Performance</name>
+                                    <name>VM</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -295,7 +412,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>Performance</name>
+                                    <name>VM</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -337,7 +454,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>Performance</name>
+                                    <name>VM</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -379,7 +496,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>Performance</name>
+                                    <name>VM</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -426,7 +543,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>Performance</name>
+                                    <name>VM</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -437,6 +554,48 @@
                                     <params/>
                                 </step>
                             </preprocessing>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#PVENAME} Locked</name>
+                            <type>0</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>pve.vm.locked[{#PVEID}]</key>
+                            <delay>1m</delay>
+                            <history>1w</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>VM</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
                             <jmx_endpoint/>
                             <application_prototypes/>
                             <master_item_prototype/>
@@ -473,7 +632,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>Performance</name>
+                                    <name>VM</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -515,7 +674,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>Performance</name>
+                                    <name>VM</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -557,7 +716,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>Performance</name>
+                                    <name>VM</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -599,7 +758,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>Performance</name>
+                                    <name>VM</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -646,7 +805,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>Performance</name>
+                                    <name>VM</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -693,7 +852,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>Performance</name>
+                                    <name>VM</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -735,7 +894,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>Performance</name>
+                                    <name>VM</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -777,7 +936,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>Performance</name>
+                                    <name>VM</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -819,7 +978,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>Performance</name>
+                                    <name>VM</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -861,7 +1020,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>Performance</name>
+                                    <name>VM</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -873,23 +1032,6 @@
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
-                        <trigger_prototype>
-                            <expression>{Template OS PVE:pve.vm.status[{#PVEID}].regexp(stopped)}=1 and&#13;
-{Template OS PVE:pve.vm.pool[{#PVEID}].regexp({$PVE_TESTPOOL})}=0</expression>
-                            <recovery_mode>0</recovery_mode>
-                            <recovery_expression/>
-                            <name>{#PVENAME}({#PVEPOOL}) stopped</name>
-                            <correlation_mode>0</correlation_mode>
-                            <correlation_tag/>
-                            <url/>
-                            <status>0</status>
-                            <priority>2</priority>
-                            <description/>
-                            <type>0</type>
-                            <manual_close>1</manual_close>
-                            <dependencies/>
-                            <tags/>
-                        </trigger_prototype>
                         <trigger_prototype>
                             <expression>{Template OS PVE:pve.vm.cpu[{#PVEID}].avg(15m)}&gt;80 and&#13;
 {Template OS PVE:pve.vm.pool[{#PVEID}].regexp({$PVE_TESTPOOL})}=0</expression>
@@ -996,6 +1138,57 @@
                             <status>0</status>
                             <priority>2</priority>
                             <description>{#PVENAME} has less then 5% memory + swap free over the last 10 minutes.</description>
+                            <type>0</type>
+                            <manual_close>1</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template OS PVE:pve.vm.uptime[{#PVEID}].change(0)}&lt;0 and&#13;
+{Template OS PVE:pve.vm.pool[{#PVEID}].regexp({$PVE_TESTPOOL})}=0</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>{#PVENAME} has just been restarted</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>1</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>1</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template OS PVE:pve.vm.locked[{#PVEID}].last(1h)}=1 and&#13;
+{Template OS PVE:pve.vm.pool[{#PVEID}].regexp({$PVE_TESTPOOL})}=0</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>{#PVENAME} is locked</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>2</priority>
+                            <description>{#PVENAME} has been locked</description>
+                            <type>0</type>
+                            <manual_close>1</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template OS PVE:pve.vm.status[{#PVEID}].regexp(stopped)}=1 and&#13;
+{Template OS PVE:pve.vm.pool[{#PVEID}].regexp({$PVE_TESTPOOL})}=0</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>{#PVENAME} stopped</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>2</priority>
+                            <description/>
                             <type>0</type>
                             <manual_close>1</manual_close>
                             <dependencies/>
@@ -1368,4 +1561,22 @@
             </screens>
         </template>
     </templates>
+    <triggers>
+        <trigger>
+            <expression>{Template OS PVE:pve.version.version.diff(0)}&gt;0</expression>
+            <recovery_mode>0</recovery_mode>
+            <recovery_expression/>
+            <name>PVE version was changed on {HOST.NAME}</name>
+            <correlation_mode>0</correlation_mode>
+            <correlation_tag/>
+            <url/>
+            <status>0</status>
+            <priority>1</priority>
+            <description/>
+            <type>0</type>
+            <manual_close>0</manual_close>
+            <dependencies/>
+            <tags/>
+        </trigger>
+    </triggers>
 </zabbix_export>
