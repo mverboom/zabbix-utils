@@ -7,26 +7,28 @@ BUFFER=/tmp/zabbix-pve
 CFG=/etc/zabbix/zabbix-pve.conf
 CFGCTPID=/etc/zabbix/zabbix-ctpid.conf
 COOKIE=/tmp/zabbix-pve.cookie
+SOFTWARE="curl gawk sed jo jq"
 
 function pve_get_value() {
+   ! test -f $BUFFER/$1 && exit
    data=$( grep "^$2:" $BUFFER/$1)
    data=${data/*:/}
    echo ${data:-}
 }
 
-
 function discover_ctpid() {
-  jo -p data=$( jo -a $(
-  cat $CFGCTPID | sed "/^#/d;s/#.*//" | while read line
-  do
-     ctid=${line/,*/}
-     line=${line/$ctid,/}
-     name=${line/,*}
-     expr=${line/$name,/}
-     ctname=$(grep name: $BUFFER/vm_$ctid)
-     ctname=${ctname/*:/}
-     jo {#CTPID}=$ctid,$name {#CTPIDNAME}=$name {#CTPIDID}=\"$ctid\" {#CTPIDCTNAME}=$ctname
-  done ) )
+   ! test -f $CFGCTPID && exit
+   jo -p data=$( jo -a $(
+   cat $CFGCTPID | sed "/^#/d;s/#.*//" | while read line
+   do
+      ctid=${line/,*/}
+      line=${line/$ctid,/}
+      name=${line/,*}
+      expr=${line/$name,/}
+      ctname=$(grep name: $BUFFER/vm_$ctid)
+      ctname=${ctname/*:/}
+      jo {#CTPID}=$ctid,$name {#CTPIDNAME}=$name {#CTPIDID}=\"$ctid\" {#CTPIDCTNAME}=$ctname
+   done ) )
 }
 
 function discover_ve() {
@@ -120,12 +122,25 @@ function getdata() {
 }
 
 function ctpid_get_pid() {
+   ! test -f $CFGCTPID && exit
    ctid=${1/,*/}
    expr=$(grep "^$arg," $CFGCTPID | sed "s/#.*//;s/$arg,//" )
    test "$expr" = "" && exit
    pid=$(grep "^$ctid" $BUFFER/ctpid.list | grep -m 1 "$expr" | sed -r -e "s/[0-9]+ +[0-9]+ +([0-9]+).*/\1/")
    echo ${pid:-0}
 }
+
+function sanity_check() {
+   ok=1
+   for prog in $SOFTWARE
+   do
+      which $prog > /dev/null || { echo "Missing program $prog."; ok=0; }
+   done
+   test -f $CONFIG || { echo "Missing configfile $CONFIG"; ok=0; }
+   test $ok -ne 1 && { echo "Sanity check failed. Aboring." ; exit 1; }
+}
+
+sanity_check
 
 action=$1
 arg=$2
