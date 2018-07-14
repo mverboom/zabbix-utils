@@ -22,12 +22,14 @@ function discover_ctpid() {
    cat $CFGCTPID | sed "/^#/d;s/#.*//" | while read line
    do
       ctid=${line/,*/}
-      line=${line/$ctid,/}
-      name=${line/,*}
-      expr=${line/$name,/}
-      ctname=$(grep name: $BUFFER/vm_$ctid)
-      ctname=${ctname/*:/}
-      jo {#CTPID}=$ctid,$name {#CTPIDNAME}=$name {#CTPIDID}=\"$ctid\" {#CTPIDCTNAME}=$ctname
+      if test -f $BUFFER/vm_$ctid; then
+         line=${line/$ctid,/}
+         name=${line/,*}
+         expr=${line/$name,/}
+         ctname=$(grep name: $BUFFER/vm_$ctid)
+         ctname=${ctname/*:/}
+         jo {#CTPID}=$ctid,$name {#CTPIDNAME}=$name {#CTPIDID}=\"$ctid\" {#CTPIDCTNAME}=$ctname
+      fi
    done ) )
 }
 
