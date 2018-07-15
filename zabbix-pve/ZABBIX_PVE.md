@@ -134,6 +134,28 @@ agent that has been configuratie with the command follow the steps below.
 
 Zabbix should now start collecting data.
 
+If you want to exclude VM's or containers from generating alerts, a pool can be
+defined on the proxmox system. VM's and containers should be placed in that pool.
+For example:
+
+* Open the proxmox webinterface
+* Go to datacenter -> Permissions -> Pools
+* Choose Create Pool and enter a Name and Comment
+* Select the newly created pool at the bottom of the list
+* Select Members
+* Choose Add -> Virtual Machine
+* Select the systems to add to the pool
+
+To exclude the pool from generating alerts, do the following.
+
+* Open the zabbix webinterface
+* Go to Configuration -> Hosts
+* Select the host
+* Go to Macros
+* Add a macro called {$PVE_TESTPOOL}
+* Assign it the value of the Pool Name that was created
+* Choose Update
+
 # FILES
 
 `/usr/local/bin/zabbix_pve` Command
