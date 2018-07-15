@@ -6,7 +6,6 @@
 BUFFER=/tmp/zabbix-pve
 CFG=/etc/zabbix/zabbix-pve.conf
 CFGCTPID=/etc/zabbix/zabbix-ctpid.conf
-COOKIE=/tmp/zabbix-pve.cookie
 SOFTWARE="curl gawk sed jo jq"
 
 function pve_get_value() {
@@ -58,8 +57,14 @@ function getdata() {
    . $CFG
    mkdir $BUFFER.$$; chown zabbix:zabbix $BUFFER.$$; chmod 750 $BUFFER.$$
    cd $BUFFER.$$
-   curl -s -k -d "username=$USERNAME&password=$PASSWORD"  https://$HOSTNAME:8006/api2/json/access/ticket | jq --raw-output '.data.ticket' | sed 's/^/PVEAuthCookie=/' > $COOKIE
-   ( curl -s --insecure --cookie "$(<$COOKIE)" https://$HOSTNAME:8006/api2/json/nodes/localhost/lxc/; curl -s --insecure --cookie "$(<$COOKIE)" https://$HOSTNAME:8006/api2/json/nodes/localhost/qemu/ ) | jq '.data[]' | awk '
+   data=$(curl -s -k -d @<(cat <<<"username=$USERNAME&password=$PASSWORD") https://$HOSTNAME:8006/api2/json/access/ticket)
+   test "$data" = "${date/ticket/}" && { echo "Unable to login to PVE."; exit 1; }
+
+   cookie=$(echo $data | jq --raw-output '.data.ticket' | sed 's/^/PVEAuthCookie=/')
+   token=$(echo $data | jq --raw-output '.data.CSRFPreventionToken')
+   CURL="curl -f -s -S -k -b $cookie https://$HOSTNAME:8006/api2/json"
+
+   ( $CURL/nodes/localhost/lxc/; $CURL/nodes/localhost/qemu/ ) | jq '.data[]' | awk '
       /^}/ { found=0;
                 fn=sprintf("vm_%s",id);
                 printf("name:%s\n", name) > fn;
@@ -104,17 +109,16 @@ function getdata() {
       /"lock"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);if ($2=="") locked=0; else locked=1;}
       /^{/ { found=1; }
 '
-   for pool in $(curl  -s --insecure --cookie "$(<$COOKIE)" https://$HOSTNAME:8006/api2/json/pools/ | jq -r '.[][].poolid')
+   for pool in $($CURL/pools/ | jq -r '.[][].poolid')
    do
-      vms=$( curl  -s --insecure --cookie "$(<$COOKIE)" https://$HOSTNAME:8006/api2/json/pools/$pool | jq -r '.[].members[] | "vm_\(.vmid)"' )
+      vms=$( $CURL/pools/$pool | jq -r '.[].members[] | "vm_\(.vmid)"' )
       test "$vms" != "" && sed -i "s/pool:/pool:$pool/" $vms
    done
 
-   curl  -s --insecure --cookie "$(<$COOKIE)" https://$HOSTNAME:8006/api2/json/nodes/$HOSTNAME/version | jq '.' | awk '
+   $CURL/nodes/$HOSTNAME/version | jq '.' | awk '
       /"version"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);printf("version:%s\n", $2) > "pve_version";}
       /"release"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);printf("release:%s\n",  $2) > "pve_version";}
       /"repoid"/ { sub(/,$/, "", $2); gsub(/"/, "", $2); printf("repoid:%s\n",  $2) > "pve_version";}'
-   rm -f $COOKIE
 
    ps --no-header -e -o lxc,etimes,pid,cmd | grep -v "^-" | sort -rn -k2,2 > ctpid.list
 
