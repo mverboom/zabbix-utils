@@ -146,6 +146,9 @@ For example:
 * Choose Add -> Virtual Machine
 * Select the systems to add to the pool
 
+If you choose a name other then test for the testpool, you need to define a macro
+on the host level to exclude the pool from generating alerts.
+
 To exclude the pool from generating alerts, do the following.
 
 * Open the zabbix webinterface
@@ -154,6 +157,18 @@ To exclude the pool from generating alerts, do the following.
 * Go to Macros
 * Add a macro called {$PVE_TESTPOOL}
 * Assign it the value of the Pool Name that was created
+* Choose Update
+
+The template sets a time of 1 hour before it alerts if a VM or containers is
+locked. If this time needs to be changed, a macro can be defined on the host
+level in order to change the value.
+
+* Open the zabbix webinterface
+* Go to Configuration -> Hosts
+* Select the host
+* Go to Macros
+* Add a macro called {$PVE_LOCKTIME}
+* Assign it the value of the timeout, for exampe 2h for 2 hours or 1m for 1 minute.
 * Choose Update
 
 # FILES
