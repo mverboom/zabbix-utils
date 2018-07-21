@@ -4,6 +4,8 @@ This template can be use for systems running Proxmox Virtual Environment. The
 template aims to give insight into the VM's and containers running on the system,
 without having to install agents on every system.
 
+This template requires at least Zabbix version 3.4.
+
 The template collects:
 * CPU usage
 * Memory usage
