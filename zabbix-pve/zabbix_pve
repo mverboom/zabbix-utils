@@ -155,11 +155,14 @@ case "$action" in
 getdata)
    getdata
 ;;
+version.*)
+   pve_get_value pve_version ${action/*./}
+;;
 vm.discover)
    discover_ve
 ;;
-version.*)
-   pve_get_value pve_version ${action/*./}
+vm.master)
+   test -f $BUFFER/vm_$arg && cat $BUFFER/vm_$arg
 ;;
 vm.*)
    pve_get_value vm_$arg ${action/*./}
