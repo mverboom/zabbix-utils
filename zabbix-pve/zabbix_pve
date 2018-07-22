@@ -8,13 +8,6 @@ CFG=/etc/zabbix/zabbix-pve.conf
 CFGCTPID=/etc/zabbix/zabbix-ctpid.conf
 SOFTWARE="curl gawk sed jo jq"
 
-function pve_get_value() {
-   ! test -f $BUFFER/$1 && exit
-   data=$( grep "^$2:" $BUFFER/$1)
-   data=${data/*:/}
-   echo ${data:-}
-}
-
 function discover_ctpid() {
    ! test -f $CFGCTPID && exit
    jo -p data=$( jo -a $(
@@ -155,22 +148,19 @@ case "$action" in
 getdata)
    getdata
 ;;
-version.*)
-   pve_get_value pve_version ${action/*./}
+pve.version.master)
+   test -f $BUFFER/pve_version && cat $BUFFER/pve_version
 ;;
-vm.discover)
+pve.vm.discover)
    discover_ve
 ;;
-vm.master)
+pve.vm.master)
    test -f $BUFFER/vm_$arg && cat $BUFFER/vm_$arg
 ;;
-vm.*)
-   pve_get_value vm_$arg ${action/*./}
-;;
-ctpid.discover)
+pve.ctpid.discover)
    discover_ctpid
 ;;
-ctpid.pid)
+pve.ctpid.pid)
    ctpid_get_pid $arg
 ;;
 esac
