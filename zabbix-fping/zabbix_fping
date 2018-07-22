@@ -7,13 +7,6 @@ BUFFER=/tmp/zabbix-fping
 SOFTWARE="fping gawk sed"
 CONFIG=/etc/zabbix/zabbix-fping.conf
 
-shopt -s nullglob
-
-function get_value() {
-   test -f $BUFFER/IPv$2/$1 && data=$( grep "^$3:" $BUFFER/IPv$2/$1 | cut -d ':' -f2 )
-   test -f $BUFFER/IPv$2/$1 -a "$data" != "" && echo $data
-}
-
 get_data() {
    ! test -d $BUFFER && mkdir $BUFFER
    ! test -d $BUFFER/IPv4 && mkdir $BUFFER/IPv4
@@ -89,7 +82,7 @@ function discover() {
 
 function sanity_check() {
    ok=1
-   for prog in $SOFTWARE
+   for prog in $SOFTWARE  
    do
       which $prog > /dev/null || { echo "Missing program $prog."; ok=0; }
    done
@@ -106,16 +99,7 @@ case "$1" in
 "discover")
    discover
 ;;
-"loss")
-   get_value $2 $3 loss
-;;
-"avg")
-   get_value $2 $3 avg
-;;
-"min")
-   get_value $2 $3 min
-;;
-"max")
-   get_value $2 $3 max
+"master")
+   test -f $BUFFER/IPv$3/$2 && cat $BUFFER/IPv$3/$2
 ;;
 esac
