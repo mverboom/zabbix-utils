@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.4</version>
-    <date>2018-07-14T07:21:43Z</date>
+    <date>2018-07-22T07:41:24Z</date>
     <groups>
         <group>
             <name>Production</name>
@@ -65,11 +65,11 @@ Updated: 2018/07/14</description>
                     <item_prototypes>
                         <item_prototype>
                             <name>Average  ({#FPNAME})</name>
-                            <type>0</type>
+                            <type>18</type>
                             <snmp_community/>
                             <snmp_oid/>
                             <key>fp.avg[{#FPNAME},{#FPIP}]</key>
-                            <delay>1m</delay>
+                            <delay>0</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
@@ -100,24 +100,82 @@ Updated: 2018/07/14</description>
                             </applications>
                             <valuemap/>
                             <logtimefmt/>
-                            <preprocessing/>
+                            <preprocessing>
+                                <step>
+                                    <type>5</type>
+                                    <params>avg:(.+)
+\1</params>
+                                </step>
+                            </preprocessing>
                             <jmx_endpoint/>
                             <application_prototypes/>
-                            <master_item_prototype/>
+                            <master_item_prototype>
+                                <key>fp.master[{#FPNAME},{#FPIP}]</key>
+                            </master_item_prototype>
                         </item_prototype>
                         <item_prototype>
                             <name>Loss  ({#FPNAME})</name>
-                            <type>0</type>
+                            <type>18</type>
                             <snmp_community/>
                             <snmp_oid/>
                             <key>fp.loss[{#FPNAME},{#FPIP}]</key>
-                            <delay>1m</delay>
+                            <delay>0</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
                             <value_type>0</value_type>
                             <allowed_hosts/>
                             <units>%</units>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Latency</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>5</type>
+                                    <params>loss:(.+)
+\1</params>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
+                            <master_item_prototype>
+                                <key>fp.master[{#FPNAME},{#FPIP}]</key>
+                            </master_item_prototype>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Fping ({#FPNAME}) master item</name>
+                            <type>0</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>fp.master[{#FPNAME},{#FPIP}]</key>
+                            <delay>1m</delay>
+                            <history>1d</history>
+                            <trends>0</trends>
+                            <status>0</status>
+                            <value_type>4</value_type>
+                            <allowed_hosts/>
+                            <units/>
                             <snmpv3_contextname/>
                             <snmpv3_securityname/>
                             <snmpv3_securitylevel>0</snmpv3_securitylevel>
@@ -149,11 +207,11 @@ Updated: 2018/07/14</description>
                         </item_prototype>
                         <item_prototype>
                             <name>Maximum  ({#FPNAME})</name>
-                            <type>0</type>
+                            <type>18</type>
                             <snmp_community/>
                             <snmp_oid/>
                             <key>fp.max[{#FPNAME},{#FPIP}]</key>
-                            <delay>1m</delay>
+                            <delay>0</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
@@ -184,18 +242,26 @@ Updated: 2018/07/14</description>
                             </applications>
                             <valuemap/>
                             <logtimefmt/>
-                            <preprocessing/>
+                            <preprocessing>
+                                <step>
+                                    <type>5</type>
+                                    <params>max:(.+)
+\1</params>
+                                </step>
+                            </preprocessing>
                             <jmx_endpoint/>
                             <application_prototypes/>
-                            <master_item_prototype/>
+                            <master_item_prototype>
+                                <key>fp.master[{#FPNAME},{#FPIP}]</key>
+                            </master_item_prototype>
                         </item_prototype>
                         <item_prototype>
                             <name>Minimum  ({#FPNAME})</name>
-                            <type>0</type>
+                            <type>18</type>
                             <snmp_community/>
                             <snmp_oid/>
                             <key>fp.min[{#FPNAME},{#FPIP}]</key>
-                            <delay>1m</delay>
+                            <delay>0</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
@@ -226,10 +292,18 @@ Updated: 2018/07/14</description>
                             </applications>
                             <valuemap/>
                             <logtimefmt/>
-                            <preprocessing/>
+                            <preprocessing>
+                                <step>
+                                    <type>5</type>
+                                    <params>min:(.+)
+\1</params>
+                                </step>
+                            </preprocessing>
                             <jmx_endpoint/>
                             <application_prototypes/>
-                            <master_item_prototype/>
+                            <master_item_prototype>
+                                <key>fp.master[{#FPNAME},{#FPIP}]</key>
+                            </master_item_prototype>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
