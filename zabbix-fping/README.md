@@ -5,6 +5,8 @@ the zabbix agent as a "point of view" from which to ping the targets. By using
 different zabbix agents remote from the target, a more global view can be made
 for the target regarding latency and packetloss.
 
+This template requires at least Zabbix version 3.4.
+
 The template collects:
 * average latency
 * packetloss
