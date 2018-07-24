@@ -7,6 +7,8 @@ BUFFER=/tmp/zabbix-fping
 SOFTWARE="fping gawk sed"
 CONFIG=/etc/zabbix/zabbix-fping.conf
 
+shopt -s nullglob
+
 get_data() {
    ! test -d $BUFFER && mkdir $BUFFER
    ! test -d $BUFFER/IPv4 && mkdir $BUFFER/IPv4
