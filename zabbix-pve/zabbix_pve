@@ -50,12 +50,12 @@ function getdata() {
    . $CFG
    mkdir $BUFFER.$$; chmod 750 $BUFFER.$$
    cd $BUFFER.$$
-   data=$(curl -s -k -d @<(cat <<<"username=$USERNAME&password=$PASSWORD") https://$HOSTNAME:8006/api2/json/access/ticket)
+   data=$(curl -s -k -d @<(cat <<<"username=$USERNAME&password=$PASSWORD") https://localhost:8006/api2/json/access/ticket)
    test "$data" = "${date/ticket/}" && { echo "Unable to login to PVE."; exit 1; }
 
    cookie=$(echo $data | jq --raw-output '.data.ticket' | sed 's/^/PVEAuthCookie=/')
    token=$(echo $data | jq --raw-output '.data.CSRFPreventionToken')
-   CURL="curl -f -s -S -k -b $cookie https://$HOSTNAME:8006/api2/json"
+   CURL="curl -s -k -b $cookie https://localhost:8006/api2/json"
 
    ( $CURL/nodes/localhost/lxc/; $CURL/nodes/localhost/qemu/ ) | jq '.data[]' | awk '
       /^}/ { found=0;
@@ -108,7 +108,7 @@ function getdata() {
       test "$vms" != "" && sed -i "s/pool:/pool:$pool/" $vms
    done
 
-   $CURL/nodes/$HOSTNAME/version | jq '.' | awk '
+   $CURL/nodes/localhost/version | jq '.' | awk '
       /"version"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);printf("version:%s\n", $2) > "pve_version";}
       /"release"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);printf("release:%s\n",  $2) > "pve_version";}
       /"repoid"/ { sub(/,$/, "", $2); gsub(/"/, "", $2); printf("repoid:%s\n",  $2) > "pve_version";}'
