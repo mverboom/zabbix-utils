@@ -48,7 +48,7 @@ function discover_ve() {
 function getdata() {
    test -f $CFG || { echo "Error: Credential configuration file not found."; exit 1; }
    . $CFG
-   mkdir $BUFFER.$$; chown zabbix:zabbix $BUFFER.$$; chmod 750 $BUFFER.$$
+   mkdir $BUFFER.$$; chmod 750 $BUFFER.$$
    cd $BUFFER.$$
    data=$(curl -s -k -d @<(cat <<<"username=$USERNAME&password=$PASSWORD") https://$HOSTNAME:8006/api2/json/access/ticket)
    test "$data" = "${date/ticket/}" && { echo "Unable to login to PVE."; exit 1; }
