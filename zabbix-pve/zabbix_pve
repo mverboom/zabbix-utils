@@ -98,7 +98,6 @@ function getdata() {
       /"netout"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);netout=$2;}
       /"uptime"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);uptime=$2;}
       /"cpus"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);cpus=$2;}
-      /"type"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);type=$2;}
       /"status"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);status=$2;}
       /"lock"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);if ($2=="") locked=0; else locked=1;}
       /^{/ { found=1; type="qemu"; }
