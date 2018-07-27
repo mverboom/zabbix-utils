@@ -99,7 +99,7 @@ A useful crontab entry would be:
 
 ### CONFIGURING ZABBIX AGENT
 
-Now that the information is begin gathered, the zabbix agent needs to be made aware
+Now that the information is being gathered, the zabbix agent needs to be made aware
 of how information can be retrieved. A configuration file is available in the
 repository and should in installed at:
 
@@ -194,7 +194,7 @@ Written by Mark Verboom
 
 # REPORTING BUGS
 
-Prefferably by opening an issue on the github page.
+Preferably by opening an issue on the github page.
 
 # COPYRIGHT
 
