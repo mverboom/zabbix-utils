@@ -105,7 +105,7 @@ function getdata() {
    for pool in $($CURL/pools/ | jq -r '.[][].poolid')
    do
       vms=$( $CURL/pools/$pool | jq -r '.[].members[] | "vm_\(.vmid)"' )
-      test "$vms" != "" && sed -i "s/pool:/pool:$pool/" $vms
+      test "$vms" != "" && sed -i "s/pool:/pool:$pool/" $vms 2> /dev/null
    done
 
    $CURL/nodes/localhost/version | jq '.' | awk '
