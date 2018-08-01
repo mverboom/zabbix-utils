@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.4</version>
-    <date>2018-07-26T09:39:04Z</date>
+    <date>2018-08-01T10:39:26Z</date>
     <groups>
         <group>
             <name>Production</name>
@@ -15,7 +15,7 @@
             <template>Template OS PVE</template>
             <name>Template OS PVE</name>
             <description>Template for monitoring a Proxmox Virtual Environment.&#13;
-Updated: 2018/07/20</description>
+Updated: 2018/08/01</description>
             <groups>
                 <group>
                     <name>Production</name>
@@ -545,7 +545,7 @@ Updated: 2018/07/20</description>
                         <formula/>
                         <conditions/>
                     </filter>
-                    <lifetime>5d</lifetime>
+                    <lifetime>1h</lifetime>
                     <description>Container processes to monitor discovery</description>
                     <item_prototypes>
                         <item_prototype>
@@ -658,7 +658,7 @@ Updated: 2018/07/20</description>
                         <formula/>
                         <conditions/>
                     </filter>
-                    <lifetime>5d</lifetime>
+                    <lifetime>1h</lifetime>
                     <description>Virtual Machine Discovery</description>
                     <item_prototypes>
                         <item_prototype>
