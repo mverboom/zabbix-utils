@@ -100,7 +100,7 @@ function getdata() {
       /"cpus"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);cpus=$2;}
       /"status"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);status=$2;}
       /"lock"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);if ($2=="") locked=0; else locked=1;}
-      /^{/ { found=1; type="qemu"; locked=0; mem=0; maxmem=0; swap=0; maxswap=0; cpu=0; diskread=0; diskwrite=0; disk=0; maxdisk=0; netin=0; netout=0; uptime=0; cpus=0; status=0; }
+      /^{/ { found=1; type="qemu"; locked=0; mem=0; maxmem=0; swapused=0; swaptotal=0; cpu=0; diskread=0; diskwrite=0; disk=0; maxdisk=0; netin=0; netout=0; uptime=0; cpus=0; status=0; }
 '
    for pool in $($CURL/pools/ | jq -r '.[][].poolid')
    do
