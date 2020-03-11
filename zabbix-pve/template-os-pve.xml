@@ -1,2205 +1,1023 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" ?>
 <zabbix_export>
-    <version>3.4</version>
-    <date>2018-08-01T10:39:26Z</date>
-    <groups>
-        <group>
-            <name>Production</name>
-        </group>
-        <group>
-            <name>Templates</name>
-        </group>
-    </groups>
-    <templates>
-        <template>
-            <template>Template OS PVE</template>
-            <name>Template OS PVE</name>
-            <description>Template for monitoring a Proxmox Virtual Environment.&#13;
+	<version>4.4</version>
+	<date>2018-01-01T01:01:01Z</date>
+	<groups>
+		<group>
+			<name>Production</name>
+		</group>
+		<group>
+			<name>Templates</name>
+		</group>
+	</groups>
+	<templates>
+		<template>
+			<template>Template OS PVE</template>
+			<name>Template OS PVE</name>
+			<description>Template for monitoring a Proxmox Virtual Environment.
 Updated: 2018/08/01</description>
-            <groups>
-                <group>
-                    <name>Production</name>
-                </group>
-                <group>
-                    <name>Templates</name>
-                </group>
-            </groups>
-            <applications>
-                <application>
-                    <name>PVE CT process</name>
-                </application>
-                <application>
-                    <name>PVE info</name>
-                </application>
-                <application>
-                    <name>PVE process</name>
-                </application>
-                <application>
-                    <name>PVE VM</name>
-                </application>
-            </applications>
-            <items>
-                <item>
-                    <name>PVE Firewall manager</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>proc.num[&quot;pve-firewall&quot;]</key>
-                    <delay>1m</delay>
-                    <history>90d</history>
-                    <trends>365d</trends>
-                    <status>0</status>
-                    <value_type>3</value_type>
-                    <allowed_hosts/>
-                    <units/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description/>
-                    <inventory_link>0</inventory_link>
-                    <applications>
-                        <application>
-                            <name>PVE process</name>
-                        </application>
-                    </applications>
-                    <valuemap/>
-                    <logtimefmt/>
-                    <preprocessing/>
-                    <jmx_endpoint/>
-                    <master_item/>
-                </item>
-                <item>
-                    <name>PVE High Availability Cluster Resource Manager</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>proc.num[&quot;pve-ha-crm&quot;]</key>
-                    <delay>1m</delay>
-                    <history>90d</history>
-                    <trends>365d</trends>
-                    <status>0</status>
-                    <value_type>3</value_type>
-                    <allowed_hosts/>
-                    <units/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description/>
-                    <inventory_link>0</inventory_link>
-                    <applications>
-                        <application>
-                            <name>PVE process</name>
-                        </application>
-                    </applications>
-                    <valuemap/>
-                    <logtimefmt/>
-                    <preprocessing/>
-                    <jmx_endpoint/>
-                    <master_item/>
-                </item>
-                <item>
-                    <name>PVE High Availability Local Resource Manager</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>proc.num[&quot;pve-ha-lrm&quot;]</key>
-                    <delay>1m</delay>
-                    <history>90d</history>
-                    <trends>365d</trends>
-                    <status>0</status>
-                    <value_type>3</value_type>
-                    <allowed_hosts/>
-                    <units/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description/>
-                    <inventory_link>0</inventory_link>
-                    <applications>
-                        <application>
-                            <name>PVE process</name>
-                        </application>
-                    </applications>
-                    <valuemap/>
-                    <logtimefmt/>
-                    <preprocessing/>
-                    <jmx_endpoint/>
-                    <master_item/>
-                </item>
-                <item>
-                    <name>PVE REST API server</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>proc.num[&quot;pvedaemon&quot;]</key>
-                    <delay>1m</delay>
-                    <history>90d</history>
-                    <trends>365d</trends>
-                    <status>0</status>
-                    <value_type>3</value_type>
-                    <allowed_hosts/>
-                    <units/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description/>
-                    <inventory_link>0</inventory_link>
-                    <applications>
-                        <application>
-                            <name>PVE process</name>
-                        </application>
-                    </applications>
-                    <valuemap/>
-                    <logtimefmt/>
-                    <preprocessing/>
-                    <jmx_endpoint/>
-                    <master_item/>
-                </item>
-                <item>
-                    <name>PVE Firewall logger</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>proc.num[&quot;pvefw-logger&quot;]</key>
-                    <delay>1m</delay>
-                    <history>90d</history>
-                    <trends>365d</trends>
-                    <status>0</status>
-                    <value_type>3</value_type>
-                    <allowed_hosts/>
-                    <units/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description/>
-                    <inventory_link>0</inventory_link>
-                    <applications>
-                        <application>
-                            <name>PVE process</name>
-                        </application>
-                    </applications>
-                    <valuemap/>
-                    <logtimefmt/>
-                    <preprocessing/>
-                    <jmx_endpoint/>
-                    <master_item/>
-                </item>
-                <item>
-                    <name>PVE REST API proxy server</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>proc.num[&quot;pveproxy&quot;]</key>
-                    <delay>1m</delay>
-                    <history>90d</history>
-                    <trends>365d</trends>
-                    <status>0</status>
-                    <value_type>3</value_type>
-                    <allowed_hosts/>
-                    <units/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description/>
-                    <inventory_link>0</inventory_link>
-                    <applications>
-                        <application>
-                            <name>PVE process</name>
-                        </application>
-                    </applications>
-                    <valuemap/>
-                    <logtimefmt/>
-                    <preprocessing/>
-                    <jmx_endpoint/>
-                    <master_item/>
-                </item>
-                <item>
-                    <name>PVE Status Daemon</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>proc.num[&quot;pvestatd&quot;]</key>
-                    <delay>1m</delay>
-                    <history>90d</history>
-                    <trends>365d</trends>
-                    <status>0</status>
-                    <value_type>3</value_type>
-                    <allowed_hosts/>
-                    <units/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description/>
-                    <inventory_link>0</inventory_link>
-                    <applications>
-                        <application>
-                            <name>PVE process</name>
-                        </application>
-                    </applications>
-                    <valuemap/>
-                    <logtimefmt/>
-                    <preprocessing/>
-                    <jmx_endpoint/>
-                    <master_item/>
-                </item>
-                <item>
-                    <name>PVE version master item</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>pve.version.master</key>
-                    <delay>1h</delay>
-                    <history>1d</history>
-                    <trends>0</trends>
-                    <status>0</status>
-                    <value_type>4</value_type>
-                    <allowed_hosts/>
-                    <units/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description/>
-                    <inventory_link>0</inventory_link>
-                    <applications>
-                        <application>
-                            <name>PVE info</name>
-                        </application>
-                    </applications>
-                    <valuemap/>
-                    <logtimefmt/>
-                    <preprocessing/>
-                    <jmx_endpoint/>
-                    <master_item/>
-                </item>
-                <item>
-                    <name>PVE release</name>
-                    <type>18</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>pve.version.release</key>
-                    <delay>0</delay>
-                    <history>90d</history>
-                    <trends>0</trends>
-                    <status>0</status>
-                    <value_type>1</value_type>
-                    <allowed_hosts/>
-                    <units/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description>Release of PVE</description>
-                    <inventory_link>0</inventory_link>
-                    <applications>
-                        <application>
-                            <name>PVE info</name>
-                        </application>
-                    </applications>
-                    <valuemap/>
-                    <logtimefmt/>
-                    <preprocessing>
-                        <step>
-                            <type>5</type>
-                            <params>release:(.+)
+			<groups>
+				<group>
+					<name>Production</name>
+				</group>
+				<group>
+					<name>Templates</name>
+				</group>
+			</groups>
+			<applications>
+				<application>
+					<name>PVE CT process</name>
+				</application>
+				<application>
+					<name>PVE info</name>
+				</application>
+				<application>
+					<name>PVE process</name>
+				</application>
+				<application>
+					<name>PVE VM</name>
+				</application>
+			</applications>
+			<items>
+				<item>
+					<name>PVE Firewall manager</name>
+					<key>proc.num[&quot;pve-firewall&quot;]</key>
+					<applications>
+						<application>
+							<name>PVE process</name>
+						</application>
+					</applications>
+					<request_method>POST</request_method>
+					<triggers>
+						<trigger>
+							<expression>{last()}=0</expression>
+							<name>PVE Firewall manager process stopped on {HOST.NAME}</name>
+							<priority>HIGH</priority>
+						</trigger>
+					</triggers>
+				</item>
+				<item>
+					<name>PVE High Availability Cluster Resource Manager</name>
+					<key>proc.num[&quot;pve-ha-crm&quot;]</key>
+					<applications>
+						<application>
+							<name>PVE process</name>
+						</application>
+					</applications>
+					<request_method>POST</request_method>
+					<triggers>
+						<trigger>
+							<expression>{last()}=0</expression>
+							<name>PVE High Availability Cluster Resource Manager process stopped on {HOST.NAME}</name>
+							<priority>HIGH</priority>
+						</trigger>
+					</triggers>
+				</item>
+				<item>
+					<name>PVE High Availability Local Resource Manager</name>
+					<key>proc.num[&quot;pve-ha-lrm&quot;]</key>
+					<applications>
+						<application>
+							<name>PVE process</name>
+						</application>
+					</applications>
+					<request_method>POST</request_method>
+					<triggers>
+						<trigger>
+							<expression>{last()}=0</expression>
+							<name>PVE High Availability Local Resource Manager process stopped on {HOST.NAME}</name>
+							<priority>HIGH</priority>
+						</trigger>
+					</triggers>
+				</item>
+				<item>
+					<name>PVE REST API server</name>
+					<key>proc.num[&quot;pvedaemon&quot;]</key>
+					<applications>
+						<application>
+							<name>PVE process</name>
+						</application>
+					</applications>
+					<request_method>POST</request_method>
+					<triggers>
+						<trigger>
+							<expression>{last()}=0</expression>
+							<name>PVE REST API server process stopped on {HOST.NAME}</name>
+							<priority>HIGH</priority>
+						</trigger>
+					</triggers>
+				</item>
+				<item>
+					<name>PVE Firewall logger</name>
+					<key>proc.num[&quot;pvefw-logger&quot;]</key>
+					<applications>
+						<application>
+							<name>PVE process</name>
+						</application>
+					</applications>
+					<request_method>POST</request_method>
+					<triggers>
+						<trigger>
+							<expression>{last()}=0</expression>
+							<name>PVE Firewall logger process stopped on {HOST.NAME}</name>
+							<priority>HIGH</priority>
+						</trigger>
+					</triggers>
+				</item>
+				<item>
+					<name>PVE REST API proxy server</name>
+					<key>proc.num[&quot;pveproxy&quot;]</key>
+					<applications>
+						<application>
+							<name>PVE process</name>
+						</application>
+					</applications>
+					<request_method>POST</request_method>
+					<triggers>
+						<trigger>
+							<expression>{last()}=0</expression>
+							<name>PVE REST API proxy server process stopped on {HOST.NAME}</name>
+							<priority>HIGH</priority>
+						</trigger>
+					</triggers>
+				</item>
+				<item>
+					<name>PVE Status Daemon</name>
+					<key>proc.num[&quot;pvestatd&quot;]</key>
+					<applications>
+						<application>
+							<name>PVE process</name>
+						</application>
+					</applications>
+					<request_method>POST</request_method>
+					<triggers>
+						<trigger>
+							<expression>{last()}=0</expression>
+							<name>PVE Status Daemon process stopped on {HOST.NAME}</name>
+							<priority>HIGH</priority>
+						</trigger>
+					</triggers>
+				</item>
+				<item>
+					<name>PVE version master item</name>
+					<key>pve.version.master</key>
+					<delay>1h</delay>
+					<history>1d</history>
+					<trends>0</trends>
+					<value_type>TEXT</value_type>
+					<applications>
+						<application>
+							<name>PVE info</name>
+						</application>
+					</applications>
+					<request_method>POST</request_method>
+				</item>
+				<item>
+					<name>PVE release</name>
+					<type>DEPENDENT</type>
+					<key>pve.version.release</key>
+					<delay>0</delay>
+					<trends>0</trends>
+					<value_type>CHAR</value_type>
+					<description>Release of PVE</description>
+					<applications>
+						<application>
+							<name>PVE info</name>
+						</application>
+					</applications>
+					<preprocessing>
+						<step>
+							<type>REGEX</type>
+							<params>release:(.+)
 \1</params>
-                        </step>
-                    </preprocessing>
-                    <jmx_endpoint/>
-                    <master_item>
-                        <key>pve.version.master</key>
-                    </master_item>
-                </item>
-                <item>
-                    <name>PVE repo id</name>
-                    <type>18</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>pve.version.repoid</key>
-                    <delay>0</delay>
-                    <history>90d</history>
-                    <trends>0</trends>
-                    <status>0</status>
-                    <value_type>1</value_type>
-                    <allowed_hosts/>
-                    <units/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description>Repo id of PVE</description>
-                    <inventory_link>0</inventory_link>
-                    <applications>
-                        <application>
-                            <name>PVE info</name>
-                        </application>
-                    </applications>
-                    <valuemap/>
-                    <logtimefmt/>
-                    <preprocessing>
-                        <step>
-                            <type>5</type>
-                            <params>repoid:(.+)
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>pve.version.master</key>
+					</master_item>
+					<request_method>POST</request_method>
+				</item>
+				<item>
+					<name>PVE repo id</name>
+					<type>DEPENDENT</type>
+					<key>pve.version.repoid</key>
+					<delay>0</delay>
+					<trends>0</trends>
+					<value_type>CHAR</value_type>
+					<description>Repo id of PVE</description>
+					<applications>
+						<application>
+							<name>PVE info</name>
+						</application>
+					</applications>
+					<preprocessing>
+						<step>
+							<type>REGEX</type>
+							<params>repoid:(.+)
 \1</params>
-                        </step>
-                    </preprocessing>
-                    <jmx_endpoint/>
-                    <master_item>
-                        <key>pve.version.master</key>
-                    </master_item>
-                </item>
-                <item>
-                    <name>PVE version</name>
-                    <type>18</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>pve.version.version</key>
-                    <delay>0</delay>
-                    <history>90d</history>
-                    <trends>0</trends>
-                    <status>0</status>
-                    <value_type>1</value_type>
-                    <allowed_hosts/>
-                    <units/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description>Version of PVE</description>
-                    <inventory_link>0</inventory_link>
-                    <applications>
-                        <application>
-                            <name>PVE info</name>
-                        </application>
-                    </applications>
-                    <valuemap/>
-                    <logtimefmt/>
-                    <preprocessing>
-                        <step>
-                            <type>5</type>
-                            <params>version:(.+)
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>pve.version.master</key>
+					</master_item>
+					<request_method>POST</request_method>
+				</item>
+				<item>
+					<name>PVE version</name>
+					<type>DEPENDENT</type>
+					<key>pve.version.version</key>
+					<delay>0</delay>
+					<trends>0</trends>
+					<value_type>CHAR</value_type>
+					<description>Version of PVE</description>
+					<applications>
+						<application>
+							<name>PVE info</name>
+						</application>
+					</applications>
+					<preprocessing>
+						<step>
+							<type>REGEX</type>
+							<params>version:(.+)
 \1</params>
-                        </step>
-                    </preprocessing>
-                    <jmx_endpoint/>
-                    <master_item>
-                        <key>pve.version.master</key>
-                    </master_item>
-                </item>
-            </items>
-            <discovery_rules>
-                <discovery_rule>
-                    <name>CT PID discovery</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>pve.ctpid.discover</key>
-                    <delay>10m</delay>
-                    <status>0</status>
-                    <allowed_hosts/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <filter>
-                        <evaltype>0</evaltype>
-                        <formula/>
-                        <conditions/>
-                    </filter>
-                    <lifetime>1h</lifetime>
-                    <description>Container processes to monitor discovery</description>
-                    <item_prototypes>
-                        <item_prototype>
-                            <name>{#CTPIDNAME} pid ({#CTPIDCTNAME})</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <snmp_oid/>
-                            <key>pve.ctpid.pid[{#CTPID}]</key>
-                            <delay>1m</delay>
-                            <history>90d</history>
-                            <trends>365d</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description/>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PVE CT process</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <preprocessing/>
-                            <jmx_endpoint/>
-                            <application_prototypes/>
-                            <master_item_prototype/>
-                        </item_prototype>
-                    </item_prototypes>
-                    <trigger_prototypes>
-                        <trigger_prototype>
-                            <expression>{Template OS PVE:pve.ctpid.pid[{#CTPID}].change(0)}&lt;&gt;0</expression>
-                            <recovery_mode>0</recovery_mode>
-                            <recovery_expression/>
-                            <name>{#CTPIDNAME} has been restarted (on {#CTPIDCTNAME})</name>
-                            <correlation_mode>0</correlation_mode>
-                            <correlation_tag/>
-                            <url/>
-                            <status>0</status>
-                            <priority>1</priority>
-                            <description/>
-                            <type>0</type>
-                            <manual_close>0</manual_close>
-                            <dependencies/>
-                            <tags/>
-                        </trigger_prototype>
-                        <trigger_prototype>
-                            <expression>{Template OS PVE:pve.ctpid.pid[{#CTPID}].last(1m)}=0</expression>
-                            <recovery_mode>0</recovery_mode>
-                            <recovery_expression/>
-                            <name>{#CTPIDNAME} is stopped (on {#CTPIDCTNAME})</name>
-                            <correlation_mode>0</correlation_mode>
-                            <correlation_tag/>
-                            <url/>
-                            <status>0</status>
-                            <priority>4</priority>
-                            <description/>
-                            <type>0</type>
-                            <manual_close>0</manual_close>
-                            <dependencies/>
-                            <tags/>
-                        </trigger_prototype>
-                    </trigger_prototypes>
-                    <graph_prototypes/>
-                    <host_prototypes/>
-                    <jmx_endpoint/>
-                </discovery_rule>
-                <discovery_rule>
-                    <name>VM Discovery</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>pve.vm.discover</key>
-                    <delay>10m</delay>
-                    <status>0</status>
-                    <allowed_hosts/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <filter>
-                        <evaltype>0</evaltype>
-                        <formula/>
-                        <conditions/>
-                    </filter>
-                    <lifetime>1h</lifetime>
-                    <description>Virtual Machine Discovery</description>
-                    <item_prototypes>
-                        <item_prototype>
-                            <name>{#PVENAME} CPU</name>
-                            <type>18</type>
-                            <snmp_community/>
-                            <snmp_oid/>
-                            <key>pve.vm.cpu[{#PVEID}]</key>
-                            <delay>0</delay>
-                            <history>1w</history>
-                            <trends>365d</trends>
-                            <status>0</status>
-                            <value_type>0</value_type>
-                            <allowed_hosts/>
-                            <units>%</units>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description/>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PVE VM</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <preprocessing>
-                                <step>
-                                    <type>5</type>
-                                    <params>cpu:(.+)
+						</step>
+					</preprocessing>
+					<master_item>
+						<key>pve.version.master</key>
+					</master_item>
+					<request_method>POST</request_method>
+					<triggers>
+						<trigger>
+							<expression>{diff(0)}&gt;0</expression>
+							<name>PVE version was changed on {HOST.NAME}</name>
+							<priority>INFO</priority>
+						</trigger>
+					</triggers>
+				</item>
+			</items>
+			<discovery_rules>
+				<discovery_rule>
+					<name>CT PID discovery</name>
+					<key>pve.ctpid.discover</key>
+					<delay>10m</delay>
+					<lifetime>1h</lifetime>
+					<description>Container processes to monitor discovery</description>
+					<item_prototypes>
+						<item_prototype>
+							<name>{#CTPIDNAME} pid ({#CTPIDCTNAME})</name>
+							<key>pve.ctpid.pid[{#CTPID}]</key>
+							<applications>
+								<application>
+									<name>PVE CT process</name>
+								</application>
+							</applications>
+							<request_method>POST</request_method>
+							<trigger_prototypes>
+								<trigger_prototype>
+									<expression>{change(0)}&lt;&gt;0</expression>
+									<name>{#CTPIDNAME} has been restarted (on {#CTPIDCTNAME})</name>
+									<priority>INFO</priority>
+								</trigger_prototype>
+								<trigger_prototype>
+									<expression>{last(1m)}=0</expression>
+									<name>{#CTPIDNAME} is stopped (on {#CTPIDCTNAME})</name>
+									<priority>HIGH</priority>
+								</trigger_prototype>
+							</trigger_prototypes>
+						</item_prototype>
+					</item_prototypes>
+					<request_method>POST</request_method>
+				</discovery_rule>
+				<discovery_rule>
+					<name>VM Discovery</name>
+					<key>pve.vm.discover</key>
+					<delay>10m</delay>
+					<lifetime>1h</lifetime>
+					<description>Virtual Machine Discovery</description>
+					<item_prototypes>
+						<item_prototype>
+							<name>{#PVENAME} CPU</name>
+							<type>DEPENDENT</type>
+							<key>pve.vm.cpu[{#PVEID}]</key>
+							<delay>0</delay>
+							<history>1w</history>
+							<value_type>FLOAT</value_type>
+							<units>%</units>
+							<applications>
+								<application>
+									<name>PVE VM</name>
+								</application>
+							</applications>
+							<preprocessing>
+								<step>
+									<type>REGEX</type>
+									<params>cpu:(.+)
 \1</params>
-                                </step>
-                                <step>
-                                    <type>1</type>
-                                    <params>100</params>
-                                </step>
-                            </preprocessing>
-                            <jmx_endpoint/>
-                            <application_prototypes/>
-                            <master_item_prototype>
-                                <key>pve.vm.master[{#PVEID}]</key>
-                            </master_item_prototype>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>{#PVENAME} Disk  free</name>
-                            <type>15</type>
-                            <snmp_community/>
-                            <snmp_oid/>
-                            <key>pve.vm.disk-free[{#PVEID}]</key>
-                            <delay>1m</delay>
-                            <history>1w</history>
-                            <trends>365d</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units>%</units>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <params>100*(last(pve.vm.disk-total[{#PVEID}]) - last(pve.vm.disk-used[{#PVEID}]))/last(pve.vm.disk-total[{#PVEID}])</params>
-                            <ipmi_sensor/>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description/>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PVE VM</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <preprocessing/>
-                            <jmx_endpoint/>
-                            <application_prototypes/>
-                            <master_item_prototype/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>{#PVENAME} Disk total</name>
-                            <type>18</type>
-                            <snmp_community/>
-                            <snmp_oid/>
-                            <key>pve.vm.disk-total[{#PVEID}]</key>
-                            <delay>0</delay>
-                            <history>1w</history>
-                            <trends>365d</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units>B</units>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description/>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PVE VM</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <preprocessing>
-                                <step>
-                                    <type>5</type>
-                                    <params>disk-total:(.+)
+								</step>
+								<step>
+									<type>MULTIPLIER</type>
+									<params>100</params>
+								</step>
+							</preprocessing>
+							<master_item>
+								<key>pve.vm.master[{#PVEID}]</key>
+							</master_item>
+							<request_method>POST</request_method>
+						</item_prototype>
+						<item_prototype>
+							<name>{#PVENAME} Disk  free</name>
+							<type>CALCULATED</type>
+							<key>pve.vm.disk-free[{#PVEID}]</key>
+							<history>1w</history>
+							<units>%</units>
+							<params>100*(last(pve.vm.disk-total[{#PVEID}]) - last(pve.vm.disk-used[{#PVEID}]))/last(pve.vm.disk-total[{#PVEID}])</params>
+							<applications>
+								<application>
+									<name>PVE VM</name>
+								</application>
+							</applications>
+							<request_method>POST</request_method>
+						</item_prototype>
+						<item_prototype>
+							<name>{#PVENAME} Disk total</name>
+							<type>DEPENDENT</type>
+							<key>pve.vm.disk-total[{#PVEID}]</key>
+							<delay>0</delay>
+							<history>1w</history>
+							<units>B</units>
+							<applications>
+								<application>
+									<name>PVE VM</name>
+								</application>
+							</applications>
+							<preprocessing>
+								<step>
+									<type>REGEX</type>
+									<params>disk-total:(.+)
 \1</params>
-                                </step>
-                            </preprocessing>
-                            <jmx_endpoint/>
-                            <application_prototypes/>
-                            <master_item_prototype>
-                                <key>pve.vm.master[{#PVEID}]</key>
-                            </master_item_prototype>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>{#PVENAME} Disk used</name>
-                            <type>18</type>
-                            <snmp_community/>
-                            <snmp_oid/>
-                            <key>pve.vm.disk-used[{#PVEID}]</key>
-                            <delay>0</delay>
-                            <history>1w</history>
-                            <trends>365d</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units>B</units>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description/>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PVE VM</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <preprocessing>
-                                <step>
-                                    <type>5</type>
-                                    <params>disk-used:(.+)
+								</step>
+							</preprocessing>
+							<master_item>
+								<key>pve.vm.master[{#PVEID}]</key>
+							</master_item>
+							<request_method>POST</request_method>
+						</item_prototype>
+						<item_prototype>
+							<name>{#PVENAME} Disk used</name>
+							<type>DEPENDENT</type>
+							<key>pve.vm.disk-used[{#PVEID}]</key>
+							<delay>0</delay>
+							<history>1w</history>
+							<units>B</units>
+							<applications>
+								<application>
+									<name>PVE VM</name>
+								</application>
+							</applications>
+							<preprocessing>
+								<step>
+									<type>REGEX</type>
+									<params>disk-used:(.+)
 \1</params>
-                                </step>
-                            </preprocessing>
-                            <jmx_endpoint/>
-                            <application_prototypes/>
-                            <master_item_prototype>
-                                <key>pve.vm.master[{#PVEID}]</key>
-                            </master_item_prototype>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>{#PVENAME} Disk read</name>
-                            <type>18</type>
-                            <snmp_community/>
-                            <snmp_oid/>
-                            <key>pve.vm.io-read[{#PVEID}]</key>
-                            <delay>0</delay>
-                            <history>1w</history>
-                            <trends>365d</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units>B</units>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description/>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PVE VM</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <preprocessing>
-                                <step>
-                                    <type>5</type>
-                                    <params>io-read:([0-9]+)
+								</step>
+							</preprocessing>
+							<master_item>
+								<key>pve.vm.master[{#PVEID}]</key>
+							</master_item>
+							<request_method>POST</request_method>
+						</item_prototype>
+						<item_prototype>
+							<name>{#PVENAME} Disk read</name>
+							<type>DEPENDENT</type>
+							<key>pve.vm.io-read[{#PVEID}]</key>
+							<delay>0</delay>
+							<history>1w</history>
+							<units>B</units>
+							<applications>
+								<application>
+									<name>PVE VM</name>
+								</application>
+							</applications>
+							<preprocessing>
+								<step>
+									<type>REGEX</type>
+									<params>io-read:([0-9]+)
 \1</params>
-                                </step>
-                            </preprocessing>
-                            <jmx_endpoint/>
-                            <application_prototypes/>
-                            <master_item_prototype>
-                                <key>pve.vm.master[{#PVEID}]</key>
-                            </master_item_prototype>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>{#PVENAME} Disk write</name>
-                            <type>18</type>
-                            <snmp_community/>
-                            <snmp_oid/>
-                            <key>pve.vm.io-write[{#PVEID}]</key>
-                            <delay>0</delay>
-                            <history>1w</history>
-                            <trends>365d</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units>B</units>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description/>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PVE VM</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <preprocessing>
-                                <step>
-                                    <type>5</type>
-                                    <params>io-write:(.+)
+								</step>
+							</preprocessing>
+							<master_item>
+								<key>pve.vm.master[{#PVEID}]</key>
+							</master_item>
+							<request_method>POST</request_method>
+						</item_prototype>
+						<item_prototype>
+							<name>{#PVENAME} Disk write</name>
+							<type>DEPENDENT</type>
+							<key>pve.vm.io-write[{#PVEID}]</key>
+							<delay>0</delay>
+							<history>1w</history>
+							<units>B</units>
+							<applications>
+								<application>
+									<name>PVE VM</name>
+								</application>
+							</applications>
+							<preprocessing>
+								<step>
+									<type>REGEX</type>
+									<params>io-write:(.+)
 \1</params>
-                                </step>
-                            </preprocessing>
-                            <jmx_endpoint/>
-                            <application_prototypes/>
-                            <master_item_prototype>
-                                <key>pve.vm.master[{#PVEID}]</key>
-                            </master_item_prototype>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>{#PVENAME} Locked</name>
-                            <type>18</type>
-                            <snmp_community/>
-                            <snmp_oid/>
-                            <key>pve.vm.locked[{#PVEID}]</key>
-                            <delay>0</delay>
-                            <history>1w</history>
-                            <trends>365d</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description/>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PVE VM</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <preprocessing>
-                                <step>
-                                    <type>5</type>
-                                    <params>locked:(.+)
+								</step>
+							</preprocessing>
+							<master_item>
+								<key>pve.vm.master[{#PVEID}]</key>
+							</master_item>
+							<request_method>POST</request_method>
+						</item_prototype>
+						<item_prototype>
+							<name>{#PVENAME} Locked</name>
+							<type>DEPENDENT</type>
+							<key>pve.vm.locked[{#PVEID}]</key>
+							<delay>0</delay>
+							<history>1w</history>
+							<applications>
+								<application>
+									<name>PVE VM</name>
+								</application>
+							</applications>
+							<preprocessing>
+								<step>
+									<type>REGEX</type>
+									<params>locked:(.+)
 \1</params>
-                                </step>
-                            </preprocessing>
-                            <jmx_endpoint/>
-                            <application_prototypes/>
-                            <master_item_prototype>
-                                <key>pve.vm.master[{#PVEID}]</key>
-                            </master_item_prototype>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>{#PVENAME} master item</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <snmp_oid/>
-                            <key>pve.vm.master[{#PVEID}]</key>
-                            <delay>1m</delay>
-                            <history>1d</history>
-                            <trends>0</trends>
-                            <status>0</status>
-                            <value_type>4</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description/>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PVE VM</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <preprocessing/>
-                            <jmx_endpoint/>
-                            <application_prototypes/>
-                            <master_item_prototype/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>{#PVENAME} Memory  free</name>
-                            <type>15</type>
-                            <snmp_community/>
-                            <snmp_oid/>
-                            <key>pve.vm.mem-free[{#PVEID}]</key>
-                            <delay>1m</delay>
-                            <history>1w</history>
-                            <trends>365d</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units>%</units>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <params>100*((last(pve.vm.mem-total[{#PVEID}]) - last(pve.vm.mem-used[{#PVEID}])) + (last(pve.vm.swap-total[{#PVEID}]) - last(pve.vm.swap-used[{#PVEID}])))/(last(pve.vm.mem-total[{#PVEID}]) + last(pve.vm.swap-total[{#PVEID}]))</params>
-                            <ipmi_sensor/>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description/>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PVE VM</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <preprocessing/>
-                            <jmx_endpoint/>
-                            <application_prototypes/>
-                            <master_item_prototype/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>{#PVENAME} Memory total</name>
-                            <type>18</type>
-                            <snmp_community/>
-                            <snmp_oid/>
-                            <key>pve.vm.mem-total[{#PVEID}]</key>
-                            <delay>0</delay>
-                            <history>1w</history>
-                            <trends>365d</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units>B</units>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description/>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PVE VM</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <preprocessing>
-                                <step>
-                                    <type>5</type>
-                                    <params>mem-total:(.+)
+								</step>
+							</preprocessing>
+							<master_item>
+								<key>pve.vm.master[{#PVEID}]</key>
+							</master_item>
+							<request_method>POST</request_method>
+						</item_prototype>
+						<item_prototype>
+							<name>{#PVENAME} master item</name>
+							<key>pve.vm.master[{#PVEID}]</key>
+							<history>1d</history>
+							<trends>0</trends>
+							<value_type>TEXT</value_type>
+							<applications>
+								<application>
+									<name>PVE VM</name>
+								</application>
+							</applications>
+							<request_method>POST</request_method>
+						</item_prototype>
+						<item_prototype>
+							<name>{#PVENAME} Memory  free</name>
+							<type>CALCULATED</type>
+							<key>pve.vm.mem-free[{#PVEID}]</key>
+							<history>1w</history>
+							<units>%</units>
+							<params>100*(last(pve.vm.mem-total[{#PVEID}]) - last(pve.vm.mem-used[{#PVEID}]))/(last(pve.vm.mem-total[{#PVEID}]))</params>
+							<applications>
+								<application>
+									<name>PVE VM</name>
+								</application>
+							</applications>
+							<request_method>POST</request_method>
+						</item_prototype>
+						<item_prototype>
+							<name>{#PVENAME} Memory total</name>
+							<type>DEPENDENT</type>
+							<key>pve.vm.mem-total[{#PVEID}]</key>
+							<delay>0</delay>
+							<history>1w</history>
+							<units>B</units>
+							<applications>
+								<application>
+									<name>PVE VM</name>
+								</application>
+							</applications>
+							<preprocessing>
+								<step>
+									<type>REGEX</type>
+									<params>mem-total:(.+)
 \1</params>
-                                </step>
-                            </preprocessing>
-                            <jmx_endpoint/>
-                            <application_prototypes/>
-                            <master_item_prototype>
-                                <key>pve.vm.master[{#PVEID}]</key>
-                            </master_item_prototype>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>{#PVENAME} Memory used</name>
-                            <type>18</type>
-                            <snmp_community/>
-                            <snmp_oid/>
-                            <key>pve.vm.mem-used[{#PVEID}]</key>
-                            <delay>0</delay>
-                            <history>1w</history>
-                            <trends>365d</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units>B</units>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description/>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PVE VM</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <preprocessing>
-                                <step>
-                                    <type>5</type>
-                                    <params>mem-used:(.+)
+								</step>
+							</preprocessing>
+							<master_item>
+								<key>pve.vm.master[{#PVEID}]</key>
+							</master_item>
+							<request_method>POST</request_method>
+						</item_prototype>
+						<item_prototype>
+							<name>{#PVENAME} Memory used</name>
+							<type>DEPENDENT</type>
+							<key>pve.vm.mem-used[{#PVEID}]</key>
+							<delay>0</delay>
+							<history>1w</history>
+							<units>B</units>
+							<applications>
+								<application>
+									<name>PVE VM</name>
+								</application>
+							</applications>
+							<preprocessing>
+								<step>
+									<type>REGEX</type>
+									<params>mem-used:(.+)
 \1</params>
-                                </step>
-                            </preprocessing>
-                            <jmx_endpoint/>
-                            <application_prototypes/>
-                            <master_item_prototype>
-                                <key>pve.vm.master[{#PVEID}]</key>
-                            </master_item_prototype>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>{#PVENAME} Net in</name>
-                            <type>18</type>
-                            <snmp_community/>
-                            <snmp_oid/>
-                            <key>pve.vm.net-in[{#PVEID}]</key>
-                            <delay>0</delay>
-                            <history>1w</history>
-                            <trends>365d</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units>B</units>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description/>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PVE VM</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <preprocessing>
-                                <step>
-                                    <type>5</type>
-                                    <params>net-in:(.+)
+								</step>
+							</preprocessing>
+							<master_item>
+								<key>pve.vm.master[{#PVEID}]</key>
+							</master_item>
+							<request_method>POST</request_method>
+						</item_prototype>
+						<item_prototype>
+							<name>{#PVENAME} Net in</name>
+							<type>DEPENDENT</type>
+							<key>pve.vm.net-in[{#PVEID}]</key>
+							<delay>0</delay>
+							<history>1w</history>
+							<units>B</units>
+							<applications>
+								<application>
+									<name>PVE VM</name>
+								</application>
+							</applications>
+							<preprocessing>
+								<step>
+									<type>REGEX</type>
+									<params>net-in:(.+)
 \1</params>
-                                </step>
-                            </preprocessing>
-                            <jmx_endpoint/>
-                            <application_prototypes/>
-                            <master_item_prototype>
-                                <key>pve.vm.master[{#PVEID}]</key>
-                            </master_item_prototype>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>{#PVENAME} Net out</name>
-                            <type>18</type>
-                            <snmp_community/>
-                            <snmp_oid/>
-                            <key>pve.vm.net-out[{#PVEID}]</key>
-                            <delay>0</delay>
-                            <history>1w</history>
-                            <trends>365d</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units>B</units>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description/>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PVE VM</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <preprocessing>
-                                <step>
-                                    <type>5</type>
-                                    <params>net-out:(.+)
+								</step>
+							</preprocessing>
+							<master_item>
+								<key>pve.vm.master[{#PVEID}]</key>
+							</master_item>
+							<request_method>POST</request_method>
+						</item_prototype>
+						<item_prototype>
+							<name>{#PVENAME} Net out</name>
+							<type>DEPENDENT</type>
+							<key>pve.vm.net-out[{#PVEID}]</key>
+							<delay>0</delay>
+							<history>1w</history>
+							<units>B</units>
+							<applications>
+								<application>
+									<name>PVE VM</name>
+								</application>
+							</applications>
+							<preprocessing>
+								<step>
+									<type>REGEX</type>
+									<params>net-out:(.+)
 \1</params>
-                                </step>
-                            </preprocessing>
-                            <jmx_endpoint/>
-                            <application_prototypes/>
-                            <master_item_prototype>
-                                <key>pve.vm.master[{#PVEID}]</key>
-                            </master_item_prototype>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>{#PVENAME} Pool</name>
-                            <type>18</type>
-                            <snmp_community/>
-                            <snmp_oid/>
-                            <key>pve.vm.pool[{#PVEID}]</key>
-                            <delay>0</delay>
-                            <history>1w</history>
-                            <trends>0</trends>
-                            <status>0</status>
-                            <value_type>4</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description/>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PVE VM</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <preprocessing>
-                                <step>
-                                    <type>5</type>
-                                    <params>pool:(.*)
+								</step>
+							</preprocessing>
+							<master_item>
+								<key>pve.vm.master[{#PVEID}]</key>
+							</master_item>
+							<request_method>POST</request_method>
+						</item_prototype>
+						<item_prototype>
+							<name>{#PVENAME} Pool</name>
+							<type>DEPENDENT</type>
+							<key>pve.vm.pool[{#PVEID}]</key>
+							<delay>0</delay>
+							<history>1w</history>
+							<trends>0</trends>
+							<value_type>TEXT</value_type>
+							<applications>
+								<application>
+									<name>PVE VM</name>
+								</application>
+							</applications>
+							<preprocessing>
+								<step>
+									<type>REGEX</type>
+									<params>pool:(.*)
 \1</params>
-                                </step>
-                            </preprocessing>
-                            <jmx_endpoint/>
-                            <application_prototypes/>
-                            <master_item_prototype>
-                                <key>pve.vm.master[{#PVEID}]</key>
-                            </master_item_prototype>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>{#PVENAME} Status</name>
-                            <type>18</type>
-                            <snmp_community/>
-                            <snmp_oid/>
-                            <key>pve.vm.status[{#PVEID}]</key>
-                            <delay>0</delay>
-                            <history>1w</history>
-                            <trends>0</trends>
-                            <status>0</status>
-                            <value_type>4</value_type>
-                            <allowed_hosts/>
-                            <units/>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description/>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PVE VM</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <preprocessing>
-                                <step>
-                                    <type>5</type>
-                                    <params>status:(.+)
+								</step>
+							</preprocessing>
+							<master_item>
+								<key>pve.vm.master[{#PVEID}]</key>
+							</master_item>
+							<request_method>POST</request_method>
+						</item_prototype>
+						<item_prototype>
+							<name>{#PVENAME} Status</name>
+							<type>DEPENDENT</type>
+							<key>pve.vm.status[{#PVEID}]</key>
+							<delay>0</delay>
+							<history>1w</history>
+							<trends>0</trends>
+							<value_type>TEXT</value_type>
+							<applications>
+								<application>
+									<name>PVE VM</name>
+								</application>
+							</applications>
+							<preprocessing>
+								<step>
+									<type>REGEX</type>
+									<params>status:(.+)
 \1</params>
-                                </step>
-                            </preprocessing>
-                            <jmx_endpoint/>
-                            <application_prototypes/>
-                            <master_item_prototype>
-                                <key>pve.vm.master[{#PVEID}]</key>
-                            </master_item_prototype>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>{#PVENAME} Swap total</name>
-                            <type>18</type>
-                            <snmp_community/>
-                            <snmp_oid/>
-                            <key>pve.vm.swap-total[{#PVEID}]</key>
-                            <delay>0</delay>
-                            <history>1w</history>
-                            <trends>365d</trends>
-                            <status>0</status>
-                            <value_type>0</value_type>
-                            <allowed_hosts/>
-                            <units>B</units>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description/>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PVE VM</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <preprocessing>
-                                <step>
-                                    <type>5</type>
-                                    <params>swap-total:(.+)
+								</step>
+							</preprocessing>
+							<master_item>
+								<key>pve.vm.master[{#PVEID}]</key>
+							</master_item>
+							<request_method>POST</request_method>
+						</item_prototype>
+						<item_prototype>
+							<name>{#PVENAME} Swap total</name>
+							<type>DEPENDENT</type>
+							<key>pve.vm.swap-total[{#PVEID}]</key>
+							<delay>0</delay>
+							<history>1w</history>
+							<value_type>FLOAT</value_type>
+							<units>B</units>
+							<applications>
+								<application>
+									<name>PVE VM</name>
+								</application>
+							</applications>
+							<preprocessing>
+								<step>
+									<type>REGEX</type>
+									<params>swap-total:(.+)
 \1</params>
-                                </step>
-                            </preprocessing>
-                            <jmx_endpoint/>
-                            <application_prototypes/>
-                            <master_item_prototype>
-                                <key>pve.vm.master[{#PVEID}]</key>
-                            </master_item_prototype>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>{#PVENAME} Swap used</name>
-                            <type>18</type>
-                            <snmp_community/>
-                            <snmp_oid/>
-                            <key>pve.vm.swap-used[{#PVEID}]</key>
-                            <delay>0</delay>
-                            <history>1w</history>
-                            <trends>365d</trends>
-                            <status>0</status>
-                            <value_type>0</value_type>
-                            <allowed_hosts/>
-                            <units>B</units>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description/>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PVE VM</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <preprocessing>
-                                <step>
-                                    <type>5</type>
-                                    <params>swap-used:(.+)
+								</step>
+							</preprocessing>
+							<master_item>
+								<key>pve.vm.master[{#PVEID}]</key>
+							</master_item>
+							<request_method>POST</request_method>
+						</item_prototype>
+						<item_prototype>
+							<name>{#PVENAME} Swap used</name>
+							<type>DEPENDENT</type>
+							<key>pve.vm.swap-used[{#PVEID}]</key>
+							<delay>0</delay>
+							<history>1w</history>
+							<value_type>FLOAT</value_type>
+							<units>B</units>
+							<applications>
+								<application>
+									<name>PVE VM</name>
+								</application>
+							</applications>
+							<preprocessing>
+								<step>
+									<type>REGEX</type>
+									<params>swap-used:(.+)
 \1</params>
-                                </step>
-                            </preprocessing>
-                            <jmx_endpoint/>
-                            <application_prototypes/>
-                            <master_item_prototype>
-                                <key>pve.vm.master[{#PVEID}]</key>
-                            </master_item_prototype>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>{#PVENAME} Uptime</name>
-                            <type>18</type>
-                            <snmp_community/>
-                            <snmp_oid/>
-                            <key>pve.vm.uptime[{#PVEID}]</key>
-                            <delay>0</delay>
-                            <history>1w</history>
-                            <trends>365d</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units>s</units>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description/>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>PVE VM</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <preprocessing>
-                                <step>
-                                    <type>5</type>
-                                    <params>uptime:(.+)
+								</step>
+							</preprocessing>
+							<master_item>
+								<key>pve.vm.master[{#PVEID}]</key>
+							</master_item>
+							<request_method>POST</request_method>
+						</item_prototype>
+						<item_prototype>
+							<name>{#PVENAME} Uptime</name>
+							<type>DEPENDENT</type>
+							<key>pve.vm.uptime[{#PVEID}]</key>
+							<delay>0</delay>
+							<history>1w</history>
+							<units>s</units>
+							<applications>
+								<application>
+									<name>PVE VM</name>
+								</application>
+							</applications>
+							<preprocessing>
+								<step>
+									<type>REGEX</type>
+									<params>uptime:(.+)
 \1</params>
-                                </step>
-                            </preprocessing>
-                            <jmx_endpoint/>
-                            <application_prototypes/>
-                            <master_item_prototype>
-                                <key>pve.vm.master[{#PVEID}]</key>
-                            </master_item_prototype>
-                        </item_prototype>
-                    </item_prototypes>
-                    <trigger_prototypes>
-                        <trigger_prototype>
-                            <expression>{Template OS PVE:pve.vm.cpu[{#PVEID}].avg(15m)}&gt;80 and&#13;
+								</step>
+							</preprocessing>
+							<master_item>
+								<key>pve.vm.master[{#PVEID}]</key>
+							</master_item>
+							<request_method>POST</request_method>
+						</item_prototype>
+					</item_prototypes>
+					<trigger_prototypes>
+						<trigger_prototype>
+							<expression>{Template OS PVE:pve.vm.cpu[{#PVEID}].avg(15m)}&gt;80 and
 {Template OS PVE:pve.vm.pool[{#PVEID}].regexp({$PVE_TESTPOOL})}=0</expression>
-                            <recovery_mode>1</recovery_mode>
-                            <recovery_expression>{Template OS PVE:pve.vm.cpu[{#PVEID}].avg(15m)}&lt;70</recovery_expression>
-                            <name>{#PVENAME} CPU over 80% for last 15 minutes</name>
-                            <correlation_mode>0</correlation_mode>
-                            <correlation_tag/>
-                            <url/>
-                            <status>0</status>
-                            <priority>2</priority>
-                            <description>{#PVENAME} has more then 80% CPU usage over the last 15 minutes</description>
-                            <type>0</type>
-                            <manual_close>1</manual_close>
-                            <dependencies/>
-                            <tags/>
-                        </trigger_prototype>
-                        <trigger_prototype>
-                            <expression>{Template OS PVE:pve.vm.disk-free[{#PVEID}].avg(10m)}&lt;1 and&#13;
+							<recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+							<recovery_expression>{Template OS PVE:pve.vm.cpu[{#PVEID}].avg(15m)}&lt;70</recovery_expression>
+							<name>{#PVENAME} CPU over 80% for last 15 minutes</name>
+							<priority>WARNING</priority>
+							<description>{#PVENAME} has more then 80% CPU usage over the last 15 minutes</description>
+							<manual_close>YES</manual_close>
+						</trigger_prototype>
+						<trigger_prototype>
+							<expression>{Template OS PVE:pve.vm.disk-free[{#PVEID}].avg(10m)}&lt;1 and
 {Template OS PVE:pve.vm.pool[{#PVEID}].regexp({$PVE_TESTPOOL})}=0</expression>
-                            <recovery_mode>1</recovery_mode>
-                            <recovery_expression>{Template OS PVE:pve.vm.disk-free[{#PVEID}].avg(10m)}&gt;3</recovery_expression>
-                            <name>{#PVENAME} disk full</name>
-                            <correlation_mode>0</correlation_mode>
-                            <correlation_tag/>
-                            <url/>
-                            <status>0</status>
-                            <priority>5</priority>
-                            <description>{#PVENAME} has no diskspace left over the last 10 minutes.</description>
-                            <type>0</type>
-                            <manual_close>1</manual_close>
-                            <dependencies/>
-                            <tags/>
-                        </trigger_prototype>
-                        <trigger_prototype>
-                            <expression>({Template OS PVE:pve.vm.disk-free[{#PVEID}].last(0,3600)}-&#13;
-{Template OS PVE:pve.vm.disk-free[{#PVEID}].last(0)})/&#13;
-{Template OS PVE:pve.vm.disk-total[{#PVEID}].last(0)} &gt; 0.1 and&#13;
+							<recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+							<recovery_expression>{Template OS PVE:pve.vm.disk-free[{#PVEID}].avg(10m)}&gt;3</recovery_expression>
+							<name>{#PVENAME} disk full</name>
+							<priority>DISASTER</priority>
+							<description>{#PVENAME} has no diskspace left over the last 10 minutes.</description>
+							<manual_close>YES</manual_close>
+						</trigger_prototype>
+						<trigger_prototype>
+							<expression>({Template OS PVE:pve.vm.disk-free[{#PVEID}].last(0,3600)}-
+{Template OS PVE:pve.vm.disk-free[{#PVEID}].last(0)})/
+{Template OS PVE:pve.vm.disk-total[{#PVEID}].last(0)} &gt; 0.1 and
 {Template OS PVE:pve.vm.pool[{#PVEID}].regexp({$PVE_TESTPOOL})}=0</expression>
-                            <recovery_mode>0</recovery_mode>
-                            <recovery_expression/>
-                            <name>{#PVENAME} disk space growing &gt;10%/hr</name>
-                            <correlation_mode>0</correlation_mode>
-                            <correlation_tag/>
-                            <url/>
-                            <status>0</status>
-                            <priority>2</priority>
-                            <description>{#PVENAME} diskspace is growing at more than 10% per hour.</description>
-                            <type>0</type>
-                            <manual_close>1</manual_close>
-                            <dependencies/>
-                            <tags/>
-                        </trigger_prototype>
-                        <trigger_prototype>
-                            <expression>{Template OS PVE:pve.vm.disk-free[{#PVEID}].avg(10m)}&lt;5 and&#13;
+							<name>{#PVENAME} disk space growing &gt;10%/hr</name>
+							<priority>WARNING</priority>
+							<description>{#PVENAME} diskspace is growing at more than 10% per hour.</description>
+							<manual_close>YES</manual_close>
+						</trigger_prototype>
+						<trigger_prototype>
+							<expression>{Template OS PVE:pve.vm.disk-free[{#PVEID}].avg(10m)}&lt;5 and
 {Template OS PVE:pve.vm.pool[{#PVEID}].regexp({$PVE_TESTPOOL})}=0</expression>
-                            <recovery_mode>1</recovery_mode>
-                            <recovery_expression>{Template OS PVE:pve.vm.disk-free[{#PVEID}].avg(10m)}&gt;7</recovery_expression>
-                            <name>{#PVENAME} free diskspace less then 5%</name>
-                            <correlation_mode>0</correlation_mode>
-                            <correlation_tag/>
-                            <url/>
-                            <status>0</status>
-                            <priority>4</priority>
-                            <description>{#PVENAME} has less then 5% diskspace free over the last 10 minutes.</description>
-                            <type>0</type>
-                            <manual_close>1</manual_close>
-                            <dependencies>
-                                <dependency>
-                                    <name>{#PVENAME} disk full</name>
-                                    <expression>{Template OS PVE:pve.vm.disk-free[{#PVEID}].avg(10m)}&lt;1 and&#13;
+							<recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+							<recovery_expression>{Template OS PVE:pve.vm.disk-free[{#PVEID}].avg(10m)}&gt;7</recovery_expression>
+							<name>{#PVENAME} free diskspace less than 5%</name>
+							<priority>HIGH</priority>
+							<description>{#PVENAME} has less then 5% diskspace free over the last 10 minutes.</description>
+							<manual_close>YES</manual_close>
+							<dependencies>
+								<dependency>
+									<name>{#PVENAME} disk full</name>
+									<expression>{Template OS PVE:pve.vm.disk-free[{#PVEID}].avg(10m)}&lt;1 and
 {Template OS PVE:pve.vm.pool[{#PVEID}].regexp({$PVE_TESTPOOL})}=0</expression>
-                                    <recovery_expression>{Template OS PVE:pve.vm.disk-free[{#PVEID}].avg(10m)}&gt;3</recovery_expression>
-                                </dependency>
-                            </dependencies>
-                            <tags/>
-                        </trigger_prototype>
-                        <trigger_prototype>
-                            <expression>{Template OS PVE:pve.vm.disk-free[{#PVEID}].avg(10m)}&lt;10 and {Template OS PVE:pve.vm.disk-free[{#PVEID}].avg(10m)}&gt;5 and&#13;
+									<recovery_expression>{Template OS PVE:pve.vm.disk-free[{#PVEID}].avg(10m)}&gt;3</recovery_expression>
+								</dependency>
+							</dependencies>
+						</trigger_prototype>
+						<trigger_prototype>
+							<expression>{Template OS PVE:pve.vm.disk-free[{#PVEID}].avg(10m)}&lt;10 and {Template OS PVE:pve.vm.disk-free[{#PVEID}].avg(10m)}&gt;5 and
 {Template OS PVE:pve.vm.pool[{#PVEID}].regexp({$PVE_TESTPOOL})}=0</expression>
-                            <recovery_mode>1</recovery_mode>
-                            <recovery_expression>{Template OS PVE:pve.vm.disk-free[{#PVEID}].avg(10m)}&gt;15</recovery_expression>
-                            <name>{#PVENAME} free diskspace less then 10%</name>
-                            <correlation_mode>0</correlation_mode>
-                            <correlation_tag/>
-                            <url/>
-                            <status>0</status>
-                            <priority>2</priority>
-                            <description>{#PVENAME} has less then 10% diskspace free over the last 10 minutes.</description>
-                            <type>0</type>
-                            <manual_close>1</manual_close>
-                            <dependencies/>
-                            <tags/>
-                        </trigger_prototype>
-                        <trigger_prototype>
-                            <expression>{Template OS PVE:pve.vm.mem-free[{#PVEID}].avg(15m)}&lt;5 and&#13;
+							<recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+							<recovery_expression>{Template OS PVE:pve.vm.disk-free[{#PVEID}].avg(10m)}&gt;15</recovery_expression>
+							<name>{#PVENAME} free diskspace less than 10%</name>
+							<priority>WARNING</priority>
+							<description>{#PVENAME} has less then 10% diskspace free over the last 10 minutes.</description>
+							<manual_close>YES</manual_close>
+						</trigger_prototype>
+						<trigger_prototype>
+							<expression>{Template OS PVE:pve.vm.mem-free[{#PVEID}].avg(15m)}&lt;5 and
 {Template OS PVE:pve.vm.pool[{#PVEID}].regexp({$PVE_TESTPOOL})}=0</expression>
-                            <recovery_mode>1</recovery_mode>
-                            <recovery_expression>{Template OS PVE:pve.vm.mem-free[{#PVEID}].avg(15m)}&gt;10</recovery_expression>
-                            <name>{#PVENAME} free total memory less then 5%</name>
-                            <correlation_mode>0</correlation_mode>
-                            <correlation_tag/>
-                            <url/>
-                            <status>0</status>
-                            <priority>2</priority>
-                            <description>{#PVENAME} has less then 5% memory + swap free over the last 10 minutes.</description>
-                            <type>0</type>
-                            <manual_close>1</manual_close>
-                            <dependencies/>
-                            <tags/>
-                        </trigger_prototype>
-                        <trigger_prototype>
-                            <expression>{Template OS PVE:pve.vm.uptime[{#PVEID}].change(0)}&lt;0 and&#13;
+							<recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+							<recovery_expression>{Template OS PVE:pve.vm.mem-free[{#PVEID}].avg(15m)}&gt;10</recovery_expression>
+							<name>{#PVENAME} free total memory less than 5%</name>
+							<priority>WARNING</priority>
+							<description>{#PVENAME} has less then 5% memory + swap free over the last 10 minutes.</description>
+							<manual_close>YES</manual_close>
+						</trigger_prototype>
+						<trigger_prototype>
+							<expression>{Template OS PVE:pve.vm.uptime[{#PVEID}].change(0)}&lt;0 and
 {Template OS PVE:pve.vm.pool[{#PVEID}].regexp({$PVE_TESTPOOL})}=0</expression>
-                            <recovery_mode>0</recovery_mode>
-                            <recovery_expression/>
-                            <name>{#PVENAME} has just been restarted</name>
-                            <correlation_mode>0</correlation_mode>
-                            <correlation_tag/>
-                            <url/>
-                            <status>0</status>
-                            <priority>1</priority>
-                            <description/>
-                            <type>0</type>
-                            <manual_close>1</manual_close>
-                            <dependencies/>
-                            <tags/>
-                        </trigger_prototype>
-                        <trigger_prototype>
-                            <expression>{Template OS PVE:pve.vm.locked[{#PVEID}].last({$PVE_LOCKTIME})}=1 and&#13;
+							<name>{#PVENAME} has just been restarted</name>
+							<priority>INFO</priority>
+							<manual_close>YES</manual_close>
+						</trigger_prototype>
+						<trigger_prototype>
+							<expression>{Template OS PVE:pve.vm.locked[{#PVEID}].last()}=1 and {Template OS PVE:pve.vm.locked[{#PVEID}].last(#2,{$PVE_LOCKTIME})}=1 and
 {Template OS PVE:pve.vm.pool[{#PVEID}].regexp({$PVE_TESTPOOL})}=0</expression>
-                            <recovery_mode>0</recovery_mode>
-                            <recovery_expression/>
-                            <name>{#PVENAME} is locked</name>
-                            <correlation_mode>0</correlation_mode>
-                            <correlation_tag/>
-                            <url/>
-                            <status>0</status>
-                            <priority>2</priority>
-                            <description>{#PVENAME} has been locked</description>
-                            <type>0</type>
-                            <manual_close>1</manual_close>
-                            <dependencies/>
-                            <tags/>
-                        </trigger_prototype>
-                        <trigger_prototype>
-                            <expression>{Template OS PVE:pve.vm.status[{#PVEID}].regexp(stopped)}=1 and&#13;
+							<recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+							<recovery_expression>{Template OS PVE:pve.vm.locked[{#PVEID}].last()}=0</recovery_expression>
+							<name>{#PVENAME} is locked for more than {$PVE_LOCKTIME}</name>
+							<priority>WARNING</priority>
+							<description>{#PVENAME} has been locked for more than {$PVE_LOCKTIME}</description>
+							<manual_close>YES</manual_close>
+						</trigger_prototype>
+						<trigger_prototype>
+							<expression>{Template OS PVE:pve.vm.status[{#PVEID}].regexp(stopped)}=1 and
 {Template OS PVE:pve.vm.pool[{#PVEID}].regexp({$PVE_TESTPOOL})}=0</expression>
-                            <recovery_mode>0</recovery_mode>
-                            <recovery_expression/>
-                            <name>{#PVENAME} stopped</name>
-                            <correlation_mode>0</correlation_mode>
-                            <correlation_tag/>
-                            <url/>
-                            <status>0</status>
-                            <priority>2</priority>
-                            <description/>
-                            <type>0</type>
-                            <manual_close>1</manual_close>
-                            <dependencies/>
-                            <tags/>
-                        </trigger_prototype>
-                    </trigger_prototypes>
-                    <graph_prototypes>
-                        <graph_prototype>
-                            <name>PVE {#PVENAME} CPU ( {#PVECPUS} cpu)</name>
-                            <width>900</width>
-                            <height>200</height>
-                            <yaxismin>0.0000</yaxismin>
-                            <yaxismax>100.0000</yaxismax>
-                            <show_work_period>1</show_work_period>
-                            <show_triggers>1</show_triggers>
-                            <type>0</type>
-                            <show_legend>1</show_legend>
-                            <show_3d>0</show_3d>
-                            <percent_left>0.0000</percent_left>
-                            <percent_right>0.0000</percent_right>
-                            <ymin_type_1>1</ymin_type_1>
-                            <ymax_type_1>1</ymax_type_1>
-                            <ymin_item_1>0</ymin_item_1>
-                            <ymax_item_1>0</ymax_item_1>
-                            <graph_items>
-                                <graph_item>
-                                    <sortorder>0</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>1A7C11</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template OS PVE</host>
-                                        <key>pve.vm.cpu[{#PVEID}]</key>
-                                    </item>
-                                </graph_item>
-                            </graph_items>
-                        </graph_prototype>
-                        <graph_prototype>
-                            <name>PVE {#PVENAME} Disk IO</name>
-                            <width>900</width>
-                            <height>200</height>
-                            <yaxismin>0.0000</yaxismin>
-                            <yaxismax>100.0000</yaxismax>
-                            <show_work_period>1</show_work_period>
-                            <show_triggers>1</show_triggers>
-                            <type>0</type>
-                            <show_legend>1</show_legend>
-                            <show_3d>0</show_3d>
-                            <percent_left>0.0000</percent_left>
-                            <percent_right>0.0000</percent_right>
-                            <ymin_type_1>1</ymin_type_1>
-                            <ymax_type_1>0</ymax_type_1>
-                            <ymin_item_1>0</ymin_item_1>
-                            <ymax_item_1>0</ymax_item_1>
-                            <graph_items>
-                                <graph_item>
-                                    <sortorder>0</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>2774A4</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template OS PVE</host>
-                                        <key>pve.vm.io-read[{#PVEID}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>1</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>A54F10</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template OS PVE</host>
-                                        <key>pve.vm.io-write[{#PVEID}]</key>
-                                    </item>
-                                </graph_item>
-                            </graph_items>
-                        </graph_prototype>
-                        <graph_prototype>
-                            <name>PVE {#PVENAME} Disk Usage</name>
-                            <width>900</width>
-                            <height>200</height>
-                            <yaxismin>0.0000</yaxismin>
-                            <yaxismax>100.0000</yaxismax>
-                            <show_work_period>1</show_work_period>
-                            <show_triggers>1</show_triggers>
-                            <type>0</type>
-                            <show_legend>1</show_legend>
-                            <show_3d>0</show_3d>
-                            <percent_left>0.0000</percent_left>
-                            <percent_right>0.0000</percent_right>
-                            <ymin_type_1>1</ymin_type_1>
-                            <ymax_type_1>2</ymax_type_1>
-                            <ymin_item_1>0</ymin_item_1>
-                            <ymax_item_1>
-                                <host>Template OS PVE</host>
-                                <key>pve.vm.disk-total[{#PVEID}]</key>
-                            </ymax_item_1>
-                            <graph_items>
-                                <graph_item>
-                                    <sortorder>0</sortorder>
-                                    <drawtype>1</drawtype>
-                                    <color>00DD00</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template OS PVE</host>
-                                        <key>pve.vm.disk-total[{#PVEID}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>1</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>F63100</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template OS PVE</host>
-                                        <key>pve.vm.disk-used[{#PVEID}]</key>
-                                    </item>
-                                </graph_item>
-                            </graph_items>
-                        </graph_prototype>
-                        <graph_prototype>
-                            <name>PVE {#PVENAME} Memory Usage</name>
-                            <width>900</width>
-                            <height>200</height>
-                            <yaxismin>0.0000</yaxismin>
-                            <yaxismax>100.0000</yaxismax>
-                            <show_work_period>1</show_work_period>
-                            <show_triggers>1</show_triggers>
-                            <type>0</type>
-                            <show_legend>1</show_legend>
-                            <show_3d>0</show_3d>
-                            <percent_left>0.0000</percent_left>
-                            <percent_right>0.0000</percent_right>
-                            <ymin_type_1>1</ymin_type_1>
-                            <ymax_type_1>2</ymax_type_1>
-                            <ymin_item_1>0</ymin_item_1>
-                            <ymax_item_1>
-                                <host>Template OS PVE</host>
-                                <key>pve.vm.mem-total[{#PVEID}]</key>
-                            </ymax_item_1>
-                            <graph_items>
-                                <graph_item>
-                                    <sortorder>0</sortorder>
-                                    <drawtype>1</drawtype>
-                                    <color>33FF33</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template OS PVE</host>
-                                        <key>pve.vm.mem-total[{#PVEID}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>1</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>F63100</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template OS PVE</host>
-                                        <key>pve.vm.mem-used[{#PVEID}]</key>
-                                    </item>
-                                </graph_item>
-                            </graph_items>
-                        </graph_prototype>
-                        <graph_prototype>
-                            <name>PVE {#PVENAME} Network Traffic</name>
-                            <width>900</width>
-                            <height>200</height>
-                            <yaxismin>0.0000</yaxismin>
-                            <yaxismax>100.0000</yaxismax>
-                            <show_work_period>1</show_work_period>
-                            <show_triggers>1</show_triggers>
-                            <type>0</type>
-                            <show_legend>1</show_legend>
-                            <show_3d>0</show_3d>
-                            <percent_left>0.0000</percent_left>
-                            <percent_right>0.0000</percent_right>
-                            <ymin_type_1>1</ymin_type_1>
-                            <ymax_type_1>0</ymax_type_1>
-                            <ymin_item_1>0</ymin_item_1>
-                            <ymax_item_1>0</ymax_item_1>
-                            <graph_items>
-                                <graph_item>
-                                    <sortorder>0</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>2774A4</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template OS PVE</host>
-                                        <key>pve.vm.net-in[{#PVEID}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>1</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>A54F10</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template OS PVE</host>
-                                        <key>pve.vm.net-out[{#PVEID}]</key>
-                                    </item>
-                                </graph_item>
-                            </graph_items>
-                        </graph_prototype>
-                        <graph_prototype>
-                            <name>PVE {#PVENAME} Swap Usage</name>
-                            <width>900</width>
-                            <height>200</height>
-                            <yaxismin>0.0000</yaxismin>
-                            <yaxismax>100.0000</yaxismax>
-                            <show_work_period>1</show_work_period>
-                            <show_triggers>0</show_triggers>
-                            <type>0</type>
-                            <show_legend>1</show_legend>
-                            <show_3d>0</show_3d>
-                            <percent_left>0.0000</percent_left>
-                            <percent_right>0.0000</percent_right>
-                            <ymin_type_1>1</ymin_type_1>
-                            <ymax_type_1>2</ymax_type_1>
-                            <ymin_item_1>0</ymin_item_1>
-                            <ymax_item_1>
-                                <host>Template OS PVE</host>
-                                <key>pve.vm.swap-total[{#PVEID}]</key>
-                            </ymax_item_1>
-                            <graph_items>
-                                <graph_item>
-                                    <sortorder>0</sortorder>
-                                    <drawtype>1</drawtype>
-                                    <color>33FF33</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template OS PVE</host>
-                                        <key>pve.vm.swap-total[{#PVEID}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>1</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>F63100</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template OS PVE</host>
-                                        <key>pve.vm.swap-used[{#PVEID}]</key>
-                                    </item>
-                                </graph_item>
-                            </graph_items>
-                        </graph_prototype>
-                        <graph_prototype>
-                            <name>PVE {#PVENAME} Uptime</name>
-                            <width>900</width>
-                            <height>200</height>
-                            <yaxismin>0.0000</yaxismin>
-                            <yaxismax>100.0000</yaxismax>
-                            <show_work_period>1</show_work_period>
-                            <show_triggers>1</show_triggers>
-                            <type>0</type>
-                            <show_legend>1</show_legend>
-                            <show_3d>0</show_3d>
-                            <percent_left>0.0000</percent_left>
-                            <percent_right>0.0000</percent_right>
-                            <ymin_type_1>1</ymin_type_1>
-                            <ymax_type_1>0</ymax_type_1>
-                            <ymin_item_1>0</ymin_item_1>
-                            <ymax_item_1>0</ymax_item_1>
-                            <graph_items>
-                                <graph_item>
-                                    <sortorder>0</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>1A7C11</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>Template OS PVE</host>
-                                        <key>pve.vm.uptime[{#PVEID}]</key>
-                                    </item>
-                                </graph_item>
-                            </graph_items>
-                        </graph_prototype>
-                    </graph_prototypes>
-                    <host_prototypes/>
-                    <jmx_endpoint/>
-                </discovery_rule>
-            </discovery_rules>
-            <httptests/>
-            <macros>
-                <macro>
-                    <macro>{$PVE_LOCKTIME}</macro>
-                    <value>1h</value>
-                </macro>
-                <macro>
-                    <macro>{$PVE_TESTPOOL}</macro>
-                    <value>test</value>
-                </macro>
-            </macros>
-            <templates/>
-            <screens>
-                <screen>
-                    <name>vm ({#PMNAME})</name>
-                    <hsize>2</hsize>
-                    <vsize>1</vsize>
-                    <screen_items>
-                        <screen_item>
-                            <resourcetype>20</resourcetype>
-                            <width>500</width>
-                            <height>100</height>
-                            <x>0</x>
-                            <y>0</y>
-                            <colspan>1</colspan>
-                            <rowspan>1</rowspan>
-                            <elements>0</elements>
-                            <valign>0</valign>
-                            <halign>0</halign>
-                            <style>0</style>
-                            <url/>
-                            <dynamic>0</dynamic>
-                            <sort_triggers>0</sort_triggers>
-                            <resource>
-                                <name>PVE {#PVENAME} CPU ( {#PVECPUS} cpu)</name>
-                                <host>Template OS PVE</host>
-                            </resource>
-                            <max_columns>3</max_columns>
-                            <application/>
-                        </screen_item>
-                        <screen_item>
-                            <resourcetype>19</resourcetype>
-                            <width>500</width>
-                            <height>100</height>
-                            <x>1</x>
-                            <y>0</y>
-                            <colspan>1</colspan>
-                            <rowspan>1</rowspan>
-                            <elements>0</elements>
-                            <valign>0</valign>
-                            <halign>0</halign>
-                            <style>0</style>
-                            <url/>
-                            <dynamic>0</dynamic>
-                            <sort_triggers>0</sort_triggers>
-                            <resource>
-                                <key>pve.vm.io-write[{#PVEID}]</key>
-                                <host>Template OS PVE</host>
-                            </resource>
-                            <max_columns>3</max_columns>
-                            <application/>
-                        </screen_item>
-                    </screen_items>
-                </screen>
-            </screens>
-        </template>
-    </templates>
-    <triggers>
-        <trigger>
-            <expression>{Template OS PVE:proc.num[&quot;pvefw-logger&quot;].last()}=0</expression>
-            <recovery_mode>0</recovery_mode>
-            <recovery_expression/>
-            <name>PVE Firewall logger process stopped on {HOST.NAME}</name>
-            <correlation_mode>0</correlation_mode>
-            <correlation_tag/>
-            <url/>
-            <status>0</status>
-            <priority>4</priority>
-            <description/>
-            <type>0</type>
-            <manual_close>0</manual_close>
-            <dependencies/>
-            <tags/>
-        </trigger>
-        <trigger>
-            <expression>{Template OS PVE:proc.num[&quot;pve-firewall&quot;].last()}=0</expression>
-            <recovery_mode>0</recovery_mode>
-            <recovery_expression/>
-            <name>PVE Firewall manager process stopped on {HOST.NAME}</name>
-            <correlation_mode>0</correlation_mode>
-            <correlation_tag/>
-            <url/>
-            <status>0</status>
-            <priority>4</priority>
-            <description/>
-            <type>0</type>
-            <manual_close>0</manual_close>
-            <dependencies/>
-            <tags/>
-        </trigger>
-        <trigger>
-            <expression>{Template OS PVE:proc.num[&quot;pve-ha-crm&quot;].last()}=0</expression>
-            <recovery_mode>0</recovery_mode>
-            <recovery_expression/>
-            <name>PVE High Availability Cluster Resource Manager process stopped on {HOST.NAME}</name>
-            <correlation_mode>0</correlation_mode>
-            <correlation_tag/>
-            <url/>
-            <status>0</status>
-            <priority>4</priority>
-            <description/>
-            <type>0</type>
-            <manual_close>0</manual_close>
-            <dependencies/>
-            <tags/>
-        </trigger>
-        <trigger>
-            <expression>{Template OS PVE:proc.num[&quot;pve-ha-lrm&quot;].last()}=0</expression>
-            <recovery_mode>0</recovery_mode>
-            <recovery_expression/>
-            <name>PVE High Availability Local Resource Manager process stopped on {HOST.NAME}</name>
-            <correlation_mode>0</correlation_mode>
-            <correlation_tag/>
-            <url/>
-            <status>0</status>
-            <priority>4</priority>
-            <description/>
-            <type>0</type>
-            <manual_close>0</manual_close>
-            <dependencies/>
-            <tags/>
-        </trigger>
-        <trigger>
-            <expression>{Template OS PVE:proc.num[&quot;pveproxy&quot;].last()}=0</expression>
-            <recovery_mode>0</recovery_mode>
-            <recovery_expression/>
-            <name>PVE REST API proxy server process stopped on {HOST.NAME}</name>
-            <correlation_mode>0</correlation_mode>
-            <correlation_tag/>
-            <url/>
-            <status>0</status>
-            <priority>4</priority>
-            <description/>
-            <type>0</type>
-            <manual_close>0</manual_close>
-            <dependencies/>
-            <tags/>
-        </trigger>
-        <trigger>
-            <expression>{Template OS PVE:proc.num[&quot;pvedaemon&quot;].last()}=0</expression>
-            <recovery_mode>0</recovery_mode>
-            <recovery_expression/>
-            <name>PVE REST API server process stopped on {HOST.NAME}</name>
-            <correlation_mode>0</correlation_mode>
-            <correlation_tag/>
-            <url/>
-            <status>0</status>
-            <priority>4</priority>
-            <description/>
-            <type>0</type>
-            <manual_close>0</manual_close>
-            <dependencies/>
-            <tags/>
-        </trigger>
-        <trigger>
-            <expression>{Template OS PVE:proc.num[&quot;pvestatd&quot;].last()}=0</expression>
-            <recovery_mode>0</recovery_mode>
-            <recovery_expression/>
-            <name>PVE Status Daemon process stopped on {HOST.NAME}</name>
-            <correlation_mode>0</correlation_mode>
-            <correlation_tag/>
-            <url/>
-            <status>0</status>
-            <priority>4</priority>
-            <description/>
-            <type>0</type>
-            <manual_close>0</manual_close>
-            <dependencies/>
-            <tags/>
-        </trigger>
-        <trigger>
-            <expression>{Template OS PVE:pve.version.version.diff(0)}&gt;0</expression>
-            <recovery_mode>0</recovery_mode>
-            <recovery_expression/>
-            <name>PVE version was changed on {HOST.NAME}</name>
-            <correlation_mode>0</correlation_mode>
-            <correlation_tag/>
-            <url/>
-            <status>0</status>
-            <priority>1</priority>
-            <description/>
-            <type>0</type>
-            <manual_close>0</manual_close>
-            <dependencies/>
-            <tags/>
-        </trigger>
-    </triggers>
+							<name>{#PVENAME} stopped</name>
+							<priority>WARNING</priority>
+							<manual_close>YES</manual_close>
+						</trigger_prototype>
+					</trigger_prototypes>
+					<graph_prototypes>
+						<graph_prototype>
+							<name>PVE {#PVENAME} CPU ( {#PVECPUS} cpu)</name>
+							<ymin_type_1>FIXED</ymin_type_1>
+							<ymax_type_1>FIXED</ymax_type_1>
+							<graph_items>
+								<graph_item>
+									<color>1A7C11</color>
+									<item>
+										<host>Template OS PVE</host>
+										<key>pve.vm.cpu[{#PVEID}]</key>
+									</item>
+								</graph_item>
+							</graph_items>
+						</graph_prototype>
+						<graph_prototype>
+							<name>PVE {#PVENAME} Disk IO</name>
+							<ymin_type_1>FIXED</ymin_type_1>
+							<graph_items>
+								<graph_item>
+									<color>2774A4</color>
+									<item>
+										<host>Template OS PVE</host>
+										<key>pve.vm.io-read[{#PVEID}]</key>
+									</item>
+								</graph_item>
+								<graph_item>
+									<sortorder>1</sortorder>
+									<color>A54F10</color>
+									<item>
+										<host>Template OS PVE</host>
+										<key>pve.vm.io-write[{#PVEID}]</key>
+									</item>
+								</graph_item>
+							</graph_items>
+						</graph_prototype>
+						<graph_prototype>
+							<name>PVE {#PVENAME} Disk Usage</name>
+							<ymin_type_1>FIXED</ymin_type_1>
+							<ymax_type_1>ITEM</ymax_type_1>
+							<ymax_item_1>
+								<host>Template OS PVE</host>
+								<key>pve.vm.disk-total[{#PVEID}]</key>
+							</ymax_item_1>
+							<graph_items>
+								<graph_item>
+									<drawtype>FILLED_REGION</drawtype>
+									<color>00DD00</color>
+									<item>
+										<host>Template OS PVE</host>
+										<key>pve.vm.disk-total[{#PVEID}]</key>
+									</item>
+								</graph_item>
+								<graph_item>
+									<sortorder>1</sortorder>
+									<color>F63100</color>
+									<item>
+										<host>Template OS PVE</host>
+										<key>pve.vm.disk-used[{#PVEID}]</key>
+									</item>
+								</graph_item>
+							</graph_items>
+						</graph_prototype>
+						<graph_prototype>
+							<name>PVE {#PVENAME} Memory Usage</name>
+							<ymin_type_1>FIXED</ymin_type_1>
+							<ymax_type_1>ITEM</ymax_type_1>
+							<ymax_item_1>
+								<host>Template OS PVE</host>
+								<key>pve.vm.mem-total[{#PVEID}]</key>
+							</ymax_item_1>
+							<graph_items>
+								<graph_item>
+									<drawtype>FILLED_REGION</drawtype>
+									<color>33FF33</color>
+									<item>
+										<host>Template OS PVE</host>
+										<key>pve.vm.mem-total[{#PVEID}]</key>
+									</item>
+								</graph_item>
+								<graph_item>
+									<sortorder>1</sortorder>
+									<color>F63100</color>
+									<item>
+										<host>Template OS PVE</host>
+										<key>pve.vm.mem-used[{#PVEID}]</key>
+									</item>
+								</graph_item>
+							</graph_items>
+						</graph_prototype>
+						<graph_prototype>
+							<name>PVE {#PVENAME} Network Traffic</name>
+							<ymin_type_1>FIXED</ymin_type_1>
+							<graph_items>
+								<graph_item>
+									<color>2774A4</color>
+									<item>
+										<host>Template OS PVE</host>
+										<key>pve.vm.net-in[{#PVEID}]</key>
+									</item>
+								</graph_item>
+								<graph_item>
+									<sortorder>1</sortorder>
+									<color>A54F10</color>
+									<item>
+										<host>Template OS PVE</host>
+										<key>pve.vm.net-out[{#PVEID}]</key>
+									</item>
+								</graph_item>
+							</graph_items>
+						</graph_prototype>
+						<graph_prototype>
+							<name>PVE {#PVENAME} Swap Usage</name>
+							<show_triggers>NO</show_triggers>
+							<ymin_type_1>FIXED</ymin_type_1>
+							<ymax_type_1>ITEM</ymax_type_1>
+							<ymax_item_1>
+								<host>Template OS PVE</host>
+								<key>pve.vm.swap-total[{#PVEID}]</key>
+							</ymax_item_1>
+							<graph_items>
+								<graph_item>
+									<drawtype>FILLED_REGION</drawtype>
+									<color>33FF33</color>
+									<item>
+										<host>Template OS PVE</host>
+										<key>pve.vm.swap-total[{#PVEID}]</key>
+									</item>
+								</graph_item>
+								<graph_item>
+									<sortorder>1</sortorder>
+									<color>F63100</color>
+									<item>
+										<host>Template OS PVE</host>
+										<key>pve.vm.swap-used[{#PVEID}]</key>
+									</item>
+								</graph_item>
+							</graph_items>
+						</graph_prototype>
+						<graph_prototype>
+							<name>PVE {#PVENAME} Uptime</name>
+							<ymin_type_1>FIXED</ymin_type_1>
+							<graph_items>
+								<graph_item>
+									<color>1A7C11</color>
+									<item>
+										<host>Template OS PVE</host>
+										<key>pve.vm.uptime[{#PVEID}]</key>
+									</item>
+								</graph_item>
+							</graph_items>
+						</graph_prototype>
+					</graph_prototypes>
+					<request_method>POST</request_method>
+				</discovery_rule>
+			</discovery_rules>
+			<macros>
+				<macro>
+					<macro>{$PVE_LOCKTIME}</macro>
+					<value>1h</value>
+				</macro>
+				<macro>
+					<macro>{$PVE_TESTPOOL}</macro>
+					<value>test</value>
+				</macro>
+			</macros>
+			<screens>
+				<screen>
+					<name>vm ({#PMNAME})</name>
+					<hsize>2</hsize>
+					<vsize>1</vsize>
+					<screen_items>
+						<screen_item>
+							<resourcetype>20</resourcetype>
+							<style>0</style>
+							<resource>
+								<name>PVE {#PVENAME} CPU ( {#PVECPUS} cpu)</name>
+								<host>Template OS PVE</host>
+							</resource>
+							<width>500</width>
+							<height>100</height>
+							<x>0</x>
+							<y>0</y>
+							<colspan>1</colspan>
+							<rowspan>1</rowspan>
+							<elements>0</elements>
+							<valign>0</valign>
+							<halign>0</halign>
+							<dynamic>0</dynamic>
+							<sort_triggers>0</sort_triggers>
+							<url/>
+							<application/>
+							<max_columns>3</max_columns>
+						</screen_item>
+						<screen_item>
+							<resourcetype>19</resourcetype>
+							<style>0</style>
+							<resource>
+								<key>pve.vm.io-write[{#PVEID}]</key>
+								<host>Template OS PVE</host>
+							</resource>
+							<width>500</width>
+							<height>100</height>
+							<x>1</x>
+							<y>0</y>
+							<colspan>1</colspan>
+							<rowspan>1</rowspan>
+							<elements>0</elements>
+							<valign>0</valign>
+							<halign>0</halign>
+							<dynamic>0</dynamic>
+							<sort_triggers>0</sort_triggers>
+							<url/>
+							<application/>
+							<max_columns>3</max_columns>
+						</screen_item>
+					</screen_items>
+				</screen>
+			</screens>
+		</template>
+	</templates>
 </zabbix_export>
