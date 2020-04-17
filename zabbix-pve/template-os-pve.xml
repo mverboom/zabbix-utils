@@ -606,6 +606,35 @@ Updated: 2018/08/01</description>
 							<request_method>POST</request_method>
 						</item_prototype>
 						<item_prototype>
+							<name>{#PVENAME} Snapshots</name>
+							<type>DEPENDENT</type>
+							<key>pve.vm.snaps[{#PVEID}]</key>
+							<delay>0</delay>
+							<units>snapshots</units>
+							<applications>
+								<application>
+									<name>PVE VM</name>
+								</application>
+							</applications>
+							<preprocessing>
+								<step>
+									<type>REGEX</type>
+									<params>snapshots:(.+)
+\1</params>
+								</step>
+							</preprocessing>
+							<master_item>
+								<key>pve.vm.master[{#PVEID}]</key>
+							</master_item>
+							<trigger_prototypes>
+								<trigger_prototype>
+									<expression>{last()}&lt;&gt;0</expression>
+									<name>{#PVENAME} has snapshots</name>
+									<priority>INFO</priority>
+								</trigger_prototype>
+							</trigger_prototypes>
+						</item_prototype>
+						<item_prototype>
 							<name>{#PVENAME} Status</name>
 							<type>DEPENDENT</type>
 							<key>pve.vm.status[{#PVEID}]</key>

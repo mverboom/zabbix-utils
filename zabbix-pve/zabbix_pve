@@ -108,6 +108,18 @@ function getdata() {
       test "$vms" != "" && sed -i "s/pool:/pool:$pool/" $vms 2> /dev/null
    done
 
+   for lxc in $($CURL/nodes/localhost/lxc | jq -r '.data[].vmid')
+   do
+      snaps=$($CURL/nodes/localhost/lxc/$lxc/snapshot | jq -r '.data[].name' | awk '{ if ($1 !="current") print $1}' | wc -l)
+      echo "snapshots:$snaps" >> vm_$lxc
+   done
+
+   for qm in $($CURL/nodes/localhost/qemu | jq -r '.data[].vmid')
+   do
+      snaps=$($CURL/nodes/localhost/qemu/$qm/snapshot | jq -r '.data[].name' | awk '{ if ($1 !="current") print $1}' | wc -l)
+      echo "snapshots:$snaps" >> vm_$qm
+   done
+
    $CURL/nodes/localhost/version | jq '.' | awk '
       /"version"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);printf("version:%s\n", $2) > "pve_version";}
       /"release"/ { sub(/,$/, "", $2); gsub(/"/, "", $2);printf("release:%s\n",  $2) > "pve_version";}
